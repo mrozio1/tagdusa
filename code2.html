@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700;900&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00BFFF",
+                        "primary-container": "#00BFFF",
+                        "on-primary-container": "#002d63",
+                        "surface": "#f9f9f9",
+                        "on-surface": "#1a1c1c",
+                        "tertiary": "#ba1a20",
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0px",
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                    }
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer base {
+            body {
+                @apply bg-surface text-on-surface font-body overflow-x-hidden;
+            }
+        }
+        @layer components {
+            .brutalist-border {
+                @apply border-4 border-black;
+            }
+            .brutalist-shadow {
+                box-shadow: 12px 12px 0px 0px rgba(0,0,0,1);
+            }
+            .brutalist-shadow-sm {
+                box-shadow: 6px 6px 0px 0px rgba(0,0,0,1);
+            }
+            .skewed-bg {
+                clip-path: polygon(0 0, 100% 5%, 100% 100%, 0 95%);
+            }
+            .circuit-pattern {
+                background-image: radial-gradient(circle, #000000 1px, transparent 1px);
+                background-size: 30px 30px;
+                opacity: 0.05;
+            }
+            .headline-refined {
+                @apply font-headline font-black uppercase tracking-tighter leading-[0.85];
+                letter-spacing: -0.05em;
+            }
+            .body-refined {
+                @apply font-body font-normal tracking-wide leading-relaxed;
+            }
+            .parallax-layer {
+                transition: transform 0.6s cubic-bezier(0.33, 1, 0.68, 1);
+            }
+            .parallax-layer:hover {
+                transform: translateY(-10px) translateX(-5px);
+            }
+        }
+        .animate-marquee {
+            animation: marquee 30s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+    </style>
+</head>
+<body class="bg-surface">
+<header class="bg-white border-b-4 border-black sticky top-0 z-[100] px-6 py-4 flex justify-between items-center brutalist-shadow-sm">
+<div class="flex items-center gap-6">
+<img alt="TAGD USA Logo" class="h-8 w-auto object-contain brightness-0" src="https://lh3.googleusercontent.com/aida/ADBb0ui53HIi6GgNGCRprIfn9wcwLpnOqdndpsXUsj_Mm0PwO7NSkGUPFH6YqhNCiK2ybFB6ZCMEAY28em5SJHy0lZfJ4EIHjSUHUPGpQixFfkSYTvIOrxKGPSDTxlW1JQb7iTMJOZfaPp5a8rJeYto-9WrYk3HqfGBS4iGmtSDZWxjfvxMZZow28hxJ0VkNcIWybC3ZMippCzKbnXKz7r1CEDVA_tKg7dhAe7uqK2zBZKKKIqK-f7CBPrM1x-yv727AHcNuAljz_OR-9MI"/>
+</div>
+<nav class="hidden md:flex gap-4 font-headline font-black uppercase tracking-tight text-sm">
+<a class="bg-primary px-4 py-2 hover:translate-y-[-2px] transition-transform border-2 border-black" href="#">HOME</a>
+<a class="px-4 py-2 hover:bg-zinc-100 transition-colors" href="#">PRODUCTS</a>
+<a class="px-4 py-2 hover:bg-zinc-100 transition-colors" href="#">ABOUT</a>
+<a class="px-4 py-2 hover:bg-zinc-100 transition-colors" href="#">QUOTE</a>
+</nav>
+<div class="flex items-center">
+<button class="material-symbols-outlined text-3xl font-bold">menu</button>
+</div>
+</header>
+<main>
+<section class="relative min-h-[921px] flex items-center overflow-hidden bg-white border-b-8 border-black">
+<div class="absolute inset-0 circuit-pattern z-0"></div>
+<div class="absolute -right-20 top-0 w-1/2 h-full bg-primary opacity-5 -skew-x-12 transform"></div>
+<div class="absolute left-0 bottom-0 w-full h-32 bg-primary/10 -skew-y-2 translate-y-16"></div>
+<div class="max-w-7xl mx-auto w-full px-6 md:px-12 relative z-10 py-20">
+<div class="mb-10 w-24 h-14 border-2 border-black p-1 flex flex-col gap-1">
+<div class="flex-1 flex gap-1">
+<div class="w-8 h-full bg-black"></div>
+<div class="flex-1 flex flex-col justify-between py-[2px]">
+<div class="h-[1px] bg-black w-full"></div>
+<div class="h-[1px] bg-black w-full"></div>
+<div class="h-[1px] bg-black w-full"></div>
+</div>
+</div>
+<div class="h-[1px] bg-black w-full"></div>
+<div class="h-[1px] bg-black w-full"></div>
+</div>
+<div class="relative">
+<h1 class="headline-refined text-[14vw] md:text-[11rem] mb-12 drop-shadow-[10px_10px_0px_rgba(0,191,255,0.2)]">
+                    THE FUTURE<br/>OF NETWORKING
+                </h1>
+<div class="grid md:grid-cols-2 gap-16 items-start">
+<div class="parallax-layer bg-primary p-10 brutalist-border brutalist-shadow relative">
+<p class="font-headline font-bold text-2xl md:text-3xl text-on-primary-container uppercase italic mb-6 leading-tight">
+                            TAGD USA: THE PROFESSIONAL KEYCHAIN.
+                        </p>
+<p class="body-refined text-on-primary-container text-lg mb-10">
+                            High-performance NFC chipped hardware for professionals who demand efficiency. Eliminate paper waste. Carry your identity in a durable, industrial-grade vessel.
+                        </p>
+<button class="bg-white text-black brutalist-border px-10 py-5 font-headline font-black text-xl uppercase tracking-widest hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all brutalist-shadow-sm">
+                            GET A QUOTE
+                        </button>
+</div>
+<div class="parallax-layer relative group">
+<div class="absolute -inset-4 bg-primary/20 -skew-x-3 group-hover:skew-x-0 transition-transform duration-500"></div>
+<div class="brutalist-border p-2 bg-zinc-200 brutalist-shadow relative z-10 overflow-hidden">
+<img alt="Hero Product" class="w-full grayscale contrast-125 group-hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQiDB4lM5AjuYl6NeFsyQXHsEA0RgKrxakBPla2-A0mRJ3-z4kQwntG081mD-wp86D2FJTCqZov_ZwLwgxoHaXQmwAuZqVobYtah7pPMb09OXsYQ7aFnI9prOWAsBZww9KFzw9-KpSFXBvPEsvmWHiBKpnBYkwf6KaKT3sHlyUj0YLMVpZpBxj9iR8ETRquRD6h0Ni4pgGSiti8kauJ6_0_0vQP6glX0c4jjESyUbOT3MKb3jYEvvwzD3PcqvXlErkyit7oH_-CI_9"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-32 px-6 md:px-12 bg-surface relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-20 bg-primary -skew-y-1 origin-top-left"></div>
+<div class="max-w-7xl mx-auto relative z-10">
+<h2 class="headline-refined text-6xl md:text-8xl mb-24 flex items-center gap-6">
+<span class="w-20 h-4 bg-primary inline-block"></span>
+                ENGINEERED FOR SCALE
+            </h2>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-10">
+<div class="md:col-span-8 parallax-layer brutalist-border p-12 bg-white brutalist-shadow flex flex-col justify-between min-h-[400px]">
+<div>
+<span class="material-symbols-outlined text-7xl text-primary mb-8" style="font-variation-settings: 'wght' 200">nfc</span>
+<h3 class="headline-refined text-5xl mb-6">INSTANT PROTOCOL</h3>
+<p class="body-refined text-xl max-w-xl">Share LinkedIn, websites, portfolios, and contact files with a single tap. No apps required. No business cards forgotten.</p>
+</div>
+<div class="mt-12 flex gap-4">
+<div class="h-6 w-16 bg-primary"></div>
+<div class="h-6 w-16 bg-zinc-800"></div>
+<div class="h-6 w-16 bg-zinc-200"></div>
+</div>
+</div>
+<div class="md:col-span-4 parallax-layer brutalist-border p-12 bg-primary text-on-primary-container brutalist-shadow">
+<span class="material-symbols-outlined text-7xl mb-8" style="font-variation-settings: 'wght' 200">shield</span>
+<h3 class="headline-refined text-4xl mb-6">DURABILITY FOCUS</h3>
+<p class="body-refined text-lg">All of our products are made from durable virgin PLA ensuring colorfast and wear resistance you won't find in a paper card.</p>
+</div>
+<div class="md:col-span-4 parallax-layer brutalist-border p-12 bg-black text-white brutalist-shadow">
+<h3 class="headline-refined text-4xl mb-6 text-primary">USA MADE</h3>
+<p class="font-mono text-xs opacity-50 mb-8 tracking-widest">COORD: 33° 12' 53" N // 97° 07' 59" W</p>
+<p class="body-refined text-lg opacity-90">Every TAGD unit is programmed and assembled in our domestic facility, ensuring maximum security and quality control.</p>
+<div class="mt-10 flex items-center gap-3">
+<span class="text-primary text-3xl">★</span>
+<span class="font-mono text-xs tracking-[0.3em] uppercase">VERIFIED ORIGIN</span>
+</div>
+</div>
+<div class="md:col-span-8 parallax-layer brutalist-border bg-white brutalist-shadow overflow-hidden group relative min-h-[400px]">
+<img alt="NFC Tech" class="absolute inset-0 w-full h-full object-cover grayscale brightness-50 group-hover:scale-105 transition-transform duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfE8X4er-LRLCXeFjKYiM6B9GBKfR_nH8r6bCNNv_S0CA0q5m3zgRVoGM7PydKuBImc7x_Vjyn-8i4FkOmTBdt9QJ6cq2r9kGl3uBQATjyTxjLdWhuN3V_-EQ3Fd4rB_0IyLZLspcGsveFNSMR6c3fBWzmz6-QaJgqKF6fUKPz0YvCNWtf5D0sb_6vED9_6E9iHhbHudxYssoGasYQkzmT8qoBXzqmw8nXpCx0i2Sgm1KiL3g848wq-q3xBpibj5bd31m-6Da8nSAm"/>
+<div class="absolute inset-0 p-12 flex flex-col justify-end bg-gradient-to-t from-black via-black/40 to-transparent">
+<h3 class="headline-refined text-5xl text-white">ZERO FRICTION<br/>NETWORKING</h3>
+<p class="text-white/80 body-refined text-lg mt-4 max-w-md">Tap and go. The modern professional's primary interface designed for high-stakes environments.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="bg-zinc-100 py-32 px-6 md:px-12 relative overflow-hidden border-y-8 border-black">
+<div class="absolute inset-0 circuit-pattern opacity-[0.03]"></div>
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-24 relative z-10">
+<div class="w-full md:w-1/2 order-2 md:order-1 parallax-layer">
+<div class="relative group">
+<div class="absolute inset-0 bg-primary translate-x-6 translate-y-6 -z-10 transition-transform group-hover:translate-x-8 group-hover:translate-y-8"></div>
+<div class="brutalist-border bg-white p-4">
+<img alt="Product Display" class="w-full grayscale hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdSUGCwqpo4tAKkEq9MPmssxBgU47w0oGqXeCpSrwin9Bj-2L-e6B32-DLFySizDDUhEkN6Hh9HnmgkBcaezrKxcl6VXvxdI-DpgRB8T9aMPEcv_TIbzUU4YvzB7vbyQ8SWlmEtBsK4TSjOo3UadF4hm040s8tsjSjrYNP0Irh095NY_jcoYSxNuncEdkGn0-LKeChOHJDmuxGp_zclHyYt-bXwJCwK2qcI8nXJAqOF2bUix-UuC4P2UGsBScoOznNHb-b7bFWM6h1"/>
+</div>
+</div>
+</div>
+<div class="w-full md:w-1/2 order-1 md:order-2">
+<h2 class="headline-refined text-7xl md:text-8xl mb-12 drop-shadow-[6px_6px_0px_rgba(0,191,255,1)]">THE LAST CARD<br/>YOU'LL EVER NEED.</h2>
+<div class="space-y-8 mb-16">
+<div class="flex items-center gap-8 border-b-2 border-black/20 pb-6 group">
+<span class="bg-black text-white w-12 h-12 flex items-center justify-center font-mono text-sm group-hover:bg-primary transition-colors">01</span>
+<span class="font-headline font-bold text-3xl uppercase italic tracking-tighter">CUSTOM CONFIG</span>
+</div>
+<div class="flex items-center gap-8 border-b-2 border-black/20 pb-6 group">
+<span class="bg-black text-white w-12 h-12 flex items-center justify-center font-mono text-sm group-hover:bg-primary transition-colors">02</span>
+<span class="font-headline font-bold text-3xl uppercase italic tracking-tighter">BATTERY-FREE POWER</span>
+</div>
+<div class="flex items-center gap-8 border-b-2 border-black/20 pb-6 group">
+<span class="bg-black text-white w-12 h-12 flex items-center justify-center font-mono text-sm group-hover:bg-primary transition-colors">03</span>
+<span class="font-headline font-bold text-3xl uppercase italic tracking-tighter">WATERPROOF CORE</span>
+</div>
+</div>
+<button class="w-full bg-primary text-black brutalist-border p-8 headline-refined text-3xl brutalist-shadow hover:translate-x-2 hover:translate-y-2 hover:shadow-none transition-all">
+                    SHOP THE COLLECTION
+                </button>
+</div>
+</div>
+</section>
+<section class="bg-primary py-16 overflow-hidden border-b-8 border-black">
+<div class="flex whitespace-nowrap gap-12 items-center animate-marquee">
+<span class="headline-refined text-7xl text-black/20 italic">TAGD USA // BUILT FOR SCALE // MODERN INTERFACE // TAGD USA // BUILT FOR SCALE // MODERN INTERFACE // </span>
+<span class="headline-refined text-7xl text-black/20 italic">TAGD USA // BUILT FOR SCALE // MODERN INTERFACE // TAGD USA // BUILT FOR SCALE // MODERN INTERFACE // </span>
+</div>
+</section>
+</main>
+<footer class="bg-zinc-900 text-white py-20 px-6 md:px-12 border-t-4 border-black">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-16">
+<div class="space-y-6">
+<div class="flex items-center gap-4">
+<span class="text-primary text-3xl">★</span>
+<span class="font-headline font-black text-2xl tracking-widest uppercase">TAGD USA</span>
+</div>
+<p class="body-refined opacity-60 text-sm max-w-xs uppercase tracking-widest">
+                Industrial hardware for the digital era. Built to last, engineered to connect.
+            </p>
+<p class="font-mono text-xs opacity-40 uppercase tracking-widest mt-10">©2026 TAGD USA // DOMESTIC MFG</p>
+</div>
+<div class="grid grid-cols-2 gap-20">
+<div class="space-y-4">
+<h4 class="font-headline font-bold uppercase tracking-widest text-primary text-sm">NAVIGATE</h4>
+<nav class="flex flex-col gap-3 font-mono text-xs tracking-[0.2em] uppercase opacity-70">
+<a class="hover:text-primary hover:opacity-100 transition-all" href="#">Home</a>
+<a class="hover:text-primary hover:opacity-100 transition-all" href="#">Products</a>
+<a class="hover:text-primary hover:opacity-100 transition-all" href="#">Quote</a>
+</nav>
+</div>
+<div class="space-y-4">
+<h4 class="font-headline font-bold uppercase tracking-widest text-primary text-sm">LEGAL</h4>
+<nav class="flex flex-col gap-3 font-mono text-xs tracking-[0.2em] uppercase opacity-70">
+<a class="hover:text-primary hover:opacity-100 transition-all" href="#">Terms</a>
+<a class="hover:text-primary hover:opacity-100 transition-all" href="#">Privacy</a>
+<a class="hover:text-primary hover:opacity-100 transition-all" href="#">Origin</a>
+</nav>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-14 h-14 brutalist-border border-white flex items-center justify-center hover:bg-primary hover:text-black transition-all cursor-pointer">
+<span class="material-symbols-outlined">share</span>
+</div>
+<div class="w-14 h-14 brutalist-border border-white flex items-center justify-center hover:bg-primary hover:text-black transition-all cursor-pointer">
+<span class="material-symbols-outlined">mail</span>
+</div>
+</div>
+</div>
+</footer>
+<button class="fixed bottom-8 right-8 z-[90] bg-primary text-black w-20 h-20 brutalist-border brutalist-shadow flex items-center justify-center hover:translate-x-1 hover:translate-y-1 hover:shadow-sm transition-all">
+<span class="material-symbols-outlined text-4xl font-bold">shopping_cart</span>
+</button>
+
+</body></html>
