@@ -1,0 +1,301 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700;900&amp;family=Inter:wght@400;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-surface": "#2f3131",
+                    "on-secondary-fixed": "#1b1b1b",
+                    "tertiary": "#ba1a20",
+                    "background": "#f9f9f9",
+                    "surface": "#f9f9f9",
+                    "secondary-container": "#e2e2e2",
+                    "on-secondary-container": "#646464",
+                    "secondary": "#5e5e5e",
+                    "on-primary": "#ffffff",
+                    "outline": "#737783",
+                    "surface-variant": "#e2e2e2",
+                    "on-primary-fixed": "#001a40",
+                    "on-tertiary-fixed": "#410003",
+                    "surface-container-highest": "#e2e2e2",
+                    "primary-container": "#00BFFF", // Changed from Cornflower Blue to Bright Sky Blue
+                    "on-tertiary-container": "#650007",
+                    "on-secondary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed-variant": "#930010",
+                    "tertiary-fixed-dim": "#ffb3ac",
+                    "secondary-fixed": "#e2e2e2",
+                    "primary": "#00BFFF", // Changed to Sky Blue
+                    "primary-fixed-dim": "#acc7ff",
+                    "surface-container-low": "#f3f3f3",
+                    "on-error-container": "#93000a",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-on-surface": "#f1f1f1",
+                    "outline-variant": "#c2c6d3",
+                    "on-primary-fixed-variant": "#004492",
+                    "surface-tint": "#00BFFF",
+                    "tertiary-fixed": "#ffdad6",
+                    "on-background": "#1a1c1c",
+                    "error": "#ba1a1a",
+                    "tertiary-container": "#ff6058",
+                    "secondary-fixed-dim": "#c6c6c6",
+                    "inverse-primary": "#acc7ff",
+                    "surface-dim": "#dadada",
+                    "on-primary-container": "#002d63",
+                    "surface-bright": "#f9f9f9",
+                    "on-surface": "#1a1c1c",
+                    "on-secondary-fixed-variant": "#474747",
+                    "surface-container-high": "#e8e8e8",
+                    "surface-container": "#eeeeee",
+                    "on-tertiary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "primary-fixed": "#d7e2ff",
+                    "on-surface-variant": "#424752"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0px",
+                    "lg": "0px",
+                    "xl": "0px",
+                    "full": "0px"
+            },
+            "spacing": {},
+            "fontFamily": {
+                    "headline": ["Space Grotesk"],
+                    "body": ["Inter"],
+                    "label": ["Space Grotesk"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #f9f9f9;
+            font-family: 'Inter', sans-serif;
+            color: #1a1c1c;
+        }
+        .brutalist-shadow {
+            box-shadow: 8px 8px 0px 0px rgba(0,0,0,1);
+        }
+        .brutalist-shadow-sm {
+            box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
+        }
+        .impact-block {
+            line-height: 0.85;
+        }
+        .animate-marquee {
+            animation: marquee 20s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- TopAppBar -->
+<header class="bg-white dark:bg-zinc-950 docked full-width top-0 border-b-4 border-black dark:border-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] flex justify-between items-center w-full px-6 py-4 sticky z-50">
+<div class="flex items-center gap-4">
+<img alt="TAGD USA Logo" class="h-10 w-auto object-contain brightness-0" src="https://lh3.googleusercontent.com/aida/ADBb0ui53HIi6GgNGCRprIfn9wcwLpnOqdndpsXUsj_Mm0PwO7NSkGUPFH6YqhNCiK2ybFB6ZCMEAY28em5SJHy0lZfJ4EIHjSUHUPGpQixFfkSYTvIOrxKGPSDTxlW1JQb7iTMJOZfaPp5a8rJeYto-9WrYk3HqfGBS4iGmtSDZWxjfvxMZZow28hxJ0VkNcIWybC3ZMippCzKbnXKz7r1CEDVA_tKg7dhAe7uqK2zBZKKKIqK-f7CBPrM1x-yv727AHcNuAljz_OR-9MI" style="">
+<span class="text-3xl font-black text-black dark:text-white uppercase font-['Space_Grotesk'] tracking-tighter" style=""><br></span>
+</div>
+<nav class="hidden md:flex gap-1 font-['Space_Grotesk'] uppercase tracking-tighter font-black">
+<a class="text-white bg-[#00BFFF] px-4 py-1 hover:-translate-y-1 hover:-translate-x-1 transition-transform duration-150" href="#" style="">HOME</a>
+<a class="text-black dark:text-white hover:bg-zinc-200 dark:hover:bg-zinc-800 px-4 py-1 hover:-translate-y-1 hover:-translate-x-1 transition-transform duration-150" href="#" style="">PRODUCTS</a>
+<a class="text-black dark:text-white hover:bg-zinc-200 dark:hover:bg-zinc-800 px-4 py-1 hover:-translate-y-1 hover:-translate-x-1 transition-transform duration-150" href="#" style="">ABOUT</a>
+<a class="text-black dark:text-white hover:bg-zinc-200 dark:hover:bg-zinc-800 px-4 py-1 hover:-translate-y-1 hover:-translate-x-1 transition-transform duration-150" href="#" style="">QUOTE</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-black dark:text-white text-3xl" data-icon="menu" style="">menu</button>
+</div>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="relative min-h-[819px] flex flex-col justify-center px-6 md:px-12 py-20 bg-white overflow-hidden border-b-8 border-black">
+<!-- Background Decorative Element -->
+<div class="absolute right-0 top-0 w-1/3 h-full bg-primary-container opacity-10 -skew-x-12 transform translate-x-20"></div>
+<div class="max-w-7xl mx-auto w-full relative z-10">
+<!-- Minimalist Abstract US Flag Graphic replaced the MNGD tag -->
+<div class="mb-6 flex flex-col gap-1 w-16">
+<div class="flex gap-1">
+<div class="w-6 h-4 bg-black"></div>
+<div class="flex-1 flex flex-col gap-[2px]">
+<div class="h-[2px] bg-black"></div>
+<div class="h-[2px] bg-black"></div>
+<div class="h-[2px] bg-black"></div>
+</div>
+</div>
+<div class="h-[2px] bg-black w-full"></div>
+<div class="h-[2px] bg-black w-full"></div>
+<div class="h-[2px] bg-black w-full"></div>
+</div>
+<h1 class="font-headline font-black text-[12vw] md:text-[10rem] impact-block uppercase tracking-tighter text-black mb-8" style="">
+                    THE FUTURE<br>OF NETWORKING
+                </h1>
+<div class="flex flex-col md:flex-row items-start gap-12">
+<div class="bg-primary-container p-8 border-4 border-black brutalist-shadow w-full md:w-1/2">
+<p class="font-headline font-bold text-2xl md:text-3xl text-on-primary-container uppercase italic mb-6" style="">
+                            TAGD USA: THE PROFESSIONAL KEYCHAIN.
+                        </p>
+<p class="font-body text-on-primary-container text-lg leading-tight mb-8" style="">
+                            High-performance NFC chipped hardware for professionals who demand efficiency. Eliminate paper waste. Carry your identity in a durable, industrial-grade vessel.
+                        </p>
+<button class="bg-white text-black border-4 border-black px-8 py-4 font-headline font-black text-xl uppercase tracking-widest hover:-translate-y-2 hover:-translate-x-2 transition-transform brutalist-shadow" style="">
+                            GET A QUOTE
+                        </button>
+</div>
+<div class="w-full md:w-1/2">
+<div class="border-4 border-black p-2 bg-zinc-200 brutalist-shadow-sm">
+<img alt="Hero Product" class="w-full grayscale contrast-125" data-alt="close up of a rugged industrial keychain with integrated NFC chip technology on a metallic surface with sharp dramatic shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQiDB4lM5AjuYl6NeFsyQXHsEA0RgKrxakBPla2-A0mRJ3-z4kQwntG081mD-wp86D2FJTCqZov_ZwLwgxoHaXQmwAuZqVobYtah7pPMb09OXsYQ7aFnI9prOWAsBZww9KFzw9-KpSFXBvPEsvmWHiBKpnBYkwf6KaKT3sHlyUj0YLMVpZpBxj9iR8ETRquRD6h0Ni4pgGSiti8kauJ6_0_0vQP6glX0c4jjESyUbOT3MKb3jYEvvwzD3PcqvXlErkyit7oH_-CI_9" style="">
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Value Proposition / Bento Grid -->
+<section class="py-24 px-6 md:px-12 bg-surface">
+<div class="max-w-7xl mx-auto">
+<h2 class="font-headline font-black text-6xl uppercase mb-16 border-l-8 border-primary pl-6" style="">ENGINEERED FOR SCALE</h2>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+<!-- Feature 1 -->
+<div class="md:col-span-8 border-4 border-black p-10 bg-white brutalist-shadow flex flex-col justify-between">
+<div>
+<span class="material-symbols-outlined text-6xl text-primary mb-6" data-icon="nfc" style="">nfc</span>
+<h3 class="font-headline font-black text-4xl uppercase mb-4" style="">INSTANT PROTOCOL</h3>
+<p class="font-body text-xl max-w-xl" style="">Share LinkedIn, websites, portfolios, and contact files with a single tap. No apps required. No business cards forgotten.</p>
+</div>
+<div class="mt-12 flex gap-2">
+<div class="h-4 w-12 bg-primary"></div>
+<div class="h-4 w-12 bg-primary-container"></div>
+<div class="h-4 w-12 bg-zinc-300"></div>
+</div>
+</div>
+<!-- Feature 2 -->
+<div class="md:col-span-4 border-4 border-black p-10 bg-primary-container text-on-primary-container brutalist-shadow">
+<span class="material-symbols-outlined text-6xl mb-6" data-icon="shield" style="">shield</span>
+<h3 class="font-headline font-black text-3xl uppercase mb-4" style="">DURABILITY FOCUS</h3>
+<p class="font-body text-lg" style="">All of our products are made from durable virgin PLA ensuring colorfast and wear resistance you won't find in a paper card.</p>
+</div>
+<!-- Feature 3 -->
+<div class="md:col-span-4 border-4 border-black p-10 bg-zinc-900 text-white brutalist-shadow">
+<h3 class="font-headline font-black text-3xl uppercase mb-4" style="">USA MADE</h3>
+<p class="font-mono text-sm opacity-70 mb-6" style="">ORIGIN_: 33° 12' 53" N&nbsp;97° 07' 59" W</p>
+<p class="font-body" style="">Every TAGD unit is programmed and assembled in our domestic facility, ensuring maximum security and quality control.</p>
+<div class="mt-8 flex items-center gap-2">
+<span class="text-tertiary text-2xl font-black" style="">★</span>
+<span class="font-mono text-xs tracking-widest uppercase" style="">MADE IN USA // CERTIFIED</span>
+</div>
+</div>
+<!-- Feature 4 -->
+<div class="md:col-span-8 border-4 border-black p-1 bg-white brutalist-shadow overflow-hidden group">
+<div class="relative h-full">
+<img alt="NFC Tech" class="w-full h-full object-cover grayscale brightness-50 group-hover:grayscale-0 transition-all duration-500" data-alt="Macro photography of an NFC chip embedded inside a high-tech polymer material with blue circuit lines glowing subtly" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfE8X4er-LRLCXeFjKYiM6B9GBKfR_nH8r6bCNNv_S0CA0q5m3zgRVoGM7PydKuBImc7x_Vjyn-8i4FkOmTBdt9QJ6cq2r9kGl3uBQATjyTxjLdWhuN3V_-EQ3Fd4rB_0IyLZLspcGsveFNSMR6c3fBWzmz6-QaJgqKF6fUKPz0YvCNWtf5D0sb_6vED9_6E9iHhbHudxYssoGasYQkzmT8qoBXzqmw8nXpCx0i2Sgm1KiL3g848wq-q3xBpibj5bd31m-6Da8nSAm" style="">
+<div class="absolute inset-0 p-10 flex flex-col justify-end bg-gradient-to-t from-black/80 to-transparent">
+<h3 class="font-headline font-black text-4xl text-white uppercase" style="">ZERO FRICTION NETWORKING</h3>
+<p class="text-white/80 font-body text-lg mt-2" style="">Tap and go. The modern professional's primary interface.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Product Highlight Section -->
+<section class="bg-zinc-100 border-y-4 border-black py-24 px-6 md:px-12">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16">
+<div class="w-full md:w-1/2 order-2 md:order-1">
+<div class="relative">
+<div class="absolute inset-0 border-4 border-black translate-x-4 translate-y-4"></div>
+<img alt="Product Display" class="relative z-10 border-4 border-black w-full" data-alt="Multiple metal keychains with laser engraved company logos laid out in a grid on a technical drawing blueprint background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdSUGCwqpo4tAKkEq9MPmssxBgU47w0oGqXeCpSrwin9Bj-2L-e6B32-DLFySizDDUhEkN6Hh9HnmgkBcaezrKxcl6VXvxdI-DpgRB8T9aMPEcv_TIbzUU4YvzB7vbyQ8SWlmEtBsK4TSjOo3UadF4hm040s8tsjSjrYNP0Irh095NY_jcoYSxNuncEdkGn0-LKeChOHJDmuxGp_zclHyYt-bXwJCwK2qcI8nXJAqOF2bUix-UuC4P2UGsBScoOznNHb-b7bFWM6h1" style="">
+</div>
+</div>
+<div class="w-full md:w-1/2 order-1 md:order-2">
+<h2 class="font-headline font-black text-7xl uppercase mb-8 leading-none" style="">THE LAST CARD YOU'LL EVER NEED.</h2>
+<ul class="space-y-6 mb-12">
+<li class="flex items-center gap-4 border-b-2 border-black pb-4" style="">
+<span class="bg-black text-white px-3 py-1 font-mono text-sm" style="">01</span>
+<span class="font-headline font-bold text-2xl uppercase italic" style="">YOUR CUSTOM INFORMATION</span>
+</li>
+<li class="flex items-center gap-4 border-b-2 border-black pb-4" style="">
+<span class="bg-black text-white px-3 py-1 font-mono text-sm" style="">02</span>
+<span class="font-headline font-bold text-2xl uppercase italic" style="">BATTERY-FREE POWER</span>
+</li>
+<li class="flex items-center gap-4 border-b-2 border-black pb-4" style="">
+<span class="bg-black text-white px-3 py-1 font-mono text-sm" style="">03</span>
+<span class="font-headline font-bold text-2xl uppercase italic" style="">100% WATER PROOF</span>
+</li>
+</ul>
+<button class="w-full bg-[#00BFFF] text-black border-4 border-black p-6 font-headline font-black text-2xl uppercase tracking-tighter brutalist-shadow hover:bg-black hover:text-[#00BFFF] transition-colors" style="">
+                        SHOP THE COLLECTION
+                    </button>
+</div>
+</div>
+</section>
+<!-- CTA Strip -->
+<section class="bg-primary py-12 overflow-hidden border-b-4 border-black">
+<div class="flex whitespace-nowrap gap-12 items-center animate-marquee">
+<span class="font-headline font-black text-6xl text-black uppercase italic tracking-tighter opacity-20" style="">TAGD USA // BUILT FOR SCALE // TAGD USA // BUILT FOR SCALE // TAGD USA // BUILT FOR SCALE // TAGD USA // BUILT FOR SCALE</span>
+<span class="font-headline font-black text-6xl text-black uppercase italic tracking-tighter opacity-20" style="">TAGD USA // BUILT FOR SCALE // TAGD USA // BUILT FOR SCALE // TAGD USA // BUILT FOR SCALE // TAGD USA // BUILT FOR SCALE</span>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-zinc-100 dark:bg-zinc-900 w-full border-t-4 border-black dark:border-white p-8 flex flex-col md:flex-row justify-between items-start gap-4">
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-2">
+<span class="text-tertiary text-xl" style="">★</span>
+<span class="font-mono text-xs tracking-widest uppercase font-bold text-black dark:text-white" style="">TAGD USA // MODERN SOLUTIONS</span>
+</div>
+<p class="font-mono text-xs tracking-widest uppercase opacity-70" style="">©2026 TAGD USA // OHULLO</p>
+</div>
+<nav class="flex flex-wrap gap-8 font-mono text-xs tracking-widest uppercase">
+<a class="opacity-70 hover:opacity-100 hover:text-[#ba1a20] transition-opacity underline font-bold" href="#" style="">TERMS</a>
+<a class="opacity-70 hover:opacity-100 hover:text-[#ba1a20] transition-opacity underline font-bold" href="#" style="">PRIVACY</a>
+<a class="opacity-70 hover:opacity-100 hover:text-[#ba1a20] transition-opacity underline font-bold" href="#" style="">USA_ORIGIN</a>
+</nav>
+<div class="flex gap-4">
+<div class="h-10 w-10 border-2 border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-sm" data-icon="share" style="">share</span>
+</div>
+<div class="h-10 w-10 border-2 border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-sm" data-icon="mail" style="">mail</span>
+</div>
+</div>
+</footer>
+<!-- SideNavBar -->
+<aside class="fixed inset-y-0 left-0 z-[60] flex flex-col h-full w-80 border-r-4 border-black bg-[#00BFFF] dark:bg-blue-900 -translate-x-full transition-transform duration-300" id="mobile-nav">
+<div class="p-8 border-b-2 border-black flex flex-col gap-2">
+<div class="text-2xl font-black border-b-2 border-black font-headline italic uppercase" style="">TAGD USA</div>
+<div class="font-mono text-[10px] tracking-widest opacity-80 uppercase" style="">INDUSTRIAL SOLUTIONS</div>
+</div>
+<nav class="flex-1 p-4 flex flex-col gap-4">
+<a class="bg-white text-black border-2 border-black translate-x-2 p-4 font-headline font-bold italic uppercase flex items-center gap-4" href="#" style="">
+<span class="material-symbols-outlined" data-icon="home" style="">home</span> HOME
+            </a>
+<a class="text-black/80 hover:text-black hover:bg-white/20 p-4 font-headline font-bold italic uppercase flex items-center gap-4" href="#" style="">
+<span class="material-symbols-outlined" data-icon="inventory_2" style="">inventory_2</span> PRODUCTS
+            </a>
+<a class="text-black/80 hover:text-black hover:bg-white/20 p-4 font-headline font-bold italic uppercase flex items-center gap-4" href="#" style="">
+<span class="material-symbols-outlined" data-icon="info" style="">info</span> ABOUT
+            </a>
+<a class="text-black/80 hover:text-black hover:bg-white/20 p-4 font-headline font-bold italic uppercase flex items-center gap-4" href="#" style="">
+<span class="material-symbols-outlined" data-icon="request_quote" style="">request_quote</span> QUOTE
+            </a>
+</nav>
+<div class="p-4 border-t-2 border-black bg-white">
+<button class="w-full bg-black text-white p-4 font-headline font-black uppercase" style="">GET A QUOTE</button>
+</div>
+</aside>
+<!-- FAB -->
+<button class="fixed bottom-8 right-8 z-50 bg-tertiary text-white w-16 h-16 border-4 border-black brutalist-shadow flex items-center justify-center hover:-translate-y-2 hover:-translate-x-2 transition-transform" style="">
+<span class="material-symbols-outlined text-3xl" data-icon="shopping_cart" style="">shopping_cart</span>
+</button>
+</body></html>
