@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries">
+    let cart = [];
+    const SHIPPING = 12.00;
+    const TAX_RATE = 0.12;
+
+    function updateCategory(catId, title, desc) {
+        const heroTitle = document.getElementById('hero-title');
+        const heroDesc = document.getElementById('hero-desc');
+        const parts = title.split('_');
+        if (parts.length > 1) {
+            heroTitle.innerHTML = parts[0] + '_<span class="text-primary-container">' + parts[1] + '</span>';
+        } else {
+            heroTitle.textContent = title;
+        }
+        heroDesc.textContent = desc.toUpperCase() + ' BATCH: 2024_Q4_' + catId + '.';
+
+        document.querySelectorAll('.cat-btn').forEach(btn => {
+            btn.classList.remove('bg-primary-container');
+            btn.classList.add('bg-white');
+        });
+        if(event) event.currentTarget.classList.remove('bg-white');
+        if(event) event.currentTarget.classList.add('bg-primary-container');
+
+        document.querySelectorAll('.product-item').forEach(item => {
+            if (catId === 'ALL') {
+                item.classList.remove('hidden');
+            } else if (item.dataset.category === catId) {
+                item.classList.remove('hidden');
+            } else {
+                item.classList.add('hidden');
+            }
+        });
+    }
+
+    function toggleCart() {
+        const overlay = document.getElementById('cart-overlay');
+        overlay.classList.toggle('hidden');
+        renderCart();
+    }
+
+    function addToBag(id, name, price) {
+        const existing = cart.find(item => item.id === id);
+        if (existing) {
+            existing.qty++;
+        } else {
+            cart.push({ id, name, price, qty: 1 });
+        }
+        updateCartCount();
+        
+        const fab = document.getElementById('cart-fab');
+        fab.classList.add('scale-110', 'bg-tertiary', 'text-white');
+        setTimeout(() => {
+            fab.classList.remove('scale-110', 'bg-tertiary', 'text-white');
+        }, 300);
+    }
+
+    function updateQty(id, delta) {
+        const item = cart.find(i => i.id === id);
+        if (item) {
+            item.qty += delta;
+            if (item.qty <= 0) {
+                cart = cart.filter(i => i.id !== id);
+            }
+        }
+        renderCart();
+        updateCartCount();
+    }
+
+    function updateCartCount() {
+        const badge = document.getElementById('cart-count');
+        const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+        badge.textContent = totalItems.toString().padStart(2, '0');
+        if (totalItems > 0) badge.classList.remove('hidden');
+        else badge.classList.add('hidden');
+    }
+
+    function renderCart() {
+        const list = document.getElementById('cart-items-list');
+        if (cart.length === 0) {
+            list.innerHTML = '<div class="text-zinc-400 font-mono text-center py-10 uppercase tracking-widest">[ MANIFEST_EMPTY ]</div>';
+            updateTotals(0);
+            return;
+        }
+
+        let html = '';
+        let subtotal = 0;
+        cart.forEach(item => {
+            const itemTotal = item.price * item.qty;
+            subtotal += itemTotal;
+            html += `
+                <div class="border-2 border-black p-4 flex flex-col gap-2">
+<div class="flex justify-between items-start font-headline font-bold uppercase text-sm tracking-tight">
+<span>${item.name}</span>
+<span>$${itemTotal.toFixed(2)}</span>
+</div>
+<div class="flex justify-between items-center font-mono text-[10px]">
+<span class="text-zinc-500">UNIT_COST: $${item.price.toFixed(2)}</span>
+<div class="flex items-center gap-3 border-2 border-black">
+<button class="px-2 hover:bg-black hover:text-white" onclick="updateQty('${item.id}', -1)">-</button>
+<span class="font-bold">${item.qty}</span>
+<button class="px-2 hover:bg-black hover:text-white" onclick="updateQty('${item.id}', 1)">+</button>
+</div>
+</div>
+</div>
+            `;
+        });
+        list.innerHTML = html;
+        updateTotals(subtotal);
+    }
+
+    function updateTotals(subtotal) {
+        const tax = subtotal * TAX_RATE;
+        const total = subtotal > 0 ? subtotal + SHIPPING + tax : 0;
+        
+        document.getElementById('cart-subtotal').textContent = `$${subtotal.toFixed(2)}`;
+        document.getElementById('cart-tax').textContent = `$${tax.toFixed(2)}`;
+        document.getElementById('cart-total').textContent = `$${total.toFixed(2)}`;
+    }
+
+    function executeDeployment() {
+        if (cart.length === 0) {
+            alert('ERROR: MANIFEST_EMPTY. CANNOT_EXECUTE.');
+            return;
+        }
+        alert('DEPLOYMENT_INITIATED: Processing Order For Shipment.');
+        cart = [];
+        updateCartCount();
+        toggleCart();
+    }
+    </script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-fixed": "#1b1b1b",
+                    "primary-fixed-dim": "#7ad0ff",
+                    "tertiary": "#ba1a20",
+                    "tertiary-fixed": "#ffdad6",
+                    "inverse-primary": "#7ad0ff",
+                    "on-primary-fixed": "#001e2c",
+                    "on-error": "#ffffff",
+                    "on-background": "#1a1c1c",
+                    "tertiary-fixed-dim": "#ffb3ac",
+                    "surface-variant": "#e2e2e2",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed-dim": "#c6c6c6",
+                    "error": "#ba1a1a",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed-variant": "#930010",
+                    "surface-tint": "#00668a",
+                    "outline-variant": "#bcc8d1",
+                    "on-tertiary-fixed": "#410003",
+                    "inverse-surface": "#2f3131",
+                    "background": "#f9f9f9",
+                    "surface-container": "#eeeeee",
+                    "on-primary-container": "#00BFFF",
+                    "secondary-container": "#e2e2e2",
+                    "surface-container-high": "#e8e8e8",
+                    "on-primary-fixed-variant": "#004c69",
+                    "surface-bright": "#f9f9f9",
+                    "on-error-container": "#93000a",
+                    "surface-dim": "#dadada",
+                    "on-surface": "#1a1c1c",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-fixed-variant": "#474747",
+                    "primary": "#00668a",
+                    "primary-container": "#00BFFF",
+                    "surface-container-low": "#f3f3f3",
+                    "primary-fixed": "#c3e8ff",
+                    "on-secondary-container": "#646464",
+                    "outline": "#6d7981",
+                    "surface": "#f9f9f9",
+                    "tertiary-container": "#ff958c",
+                    "secondary": "#5e5e5e",
+                    "on-secondary": "#ffffff",
+                    "secondary-fixed": "#e2e2e2",
+                    "on-surface-variant": "#3d4850",
+                    "on-tertiary-container": "#8f000f",
+                    "on-primary": "#ffffff",
+                    "inverse-on-surface": "#f1f1f1",
+                    "surface-container-highest": "#e2e2e2"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0px",
+                    "lg": "0px",
+                    "xl": "0px",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Space Grotesk"],
+                    "body": ["Inter"],
+                    "label": ["Space Grotesk"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hard-shadow {
+            box-shadow: 4px 4px 0px 0px #000000;
+        }
+        .hard-shadow-hover:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px 0px #000000;
+        }
+        .active-link-indicator {
+            border-bottom: 4px solid #00BFFF;
+        }
+    </style>
+</head>
+<body class="bg-background font-body text-on-background">
+<!-- TopNavBar Component -->
+<header class="fixed top-0 z-50 w-full bg-white dark:bg-black border-b-4 border-black dark:border-white flex justify-between items-center px-6 py-4 max-w-none">
+<div class="h-10 w-auto">
+<img alt="TAGD Logo" class="h-full w-auto object-contain grayscale" src="https://lh3.googleusercontent.com/aida/ADBb0ui53HIi6GgNGCRprIfn9wcwLpnOqdndpsXUsj_Mm0PwO7NSkGUPFH6YqhNCiK2ybFB6ZCMEAY28em5SJHy0lZfJ4EIHjSUHUPGpQixFfkSYTvIOrxKGPSDTxlW1JQb7iTMJOZfaPp5a8rJeYto-9WrYk3HqfGBS4iGmtSDZWxjfvxMZZow28hxJ0VkNcIWybC3ZMippCzKbnXKz7r1CEDVA_tKg7dhAe7uqK2zBZKKKIqK-f7CBPrM1x-yv727AHcNuAljz_OR-9MI"/>
+</div>
+<nav class="hidden md:flex gap-2 font-['Space_Grotesk'] font-black uppercase text-sm tracking-widest">
+<a class="px-6 py-2 border-2 border-transparent hover:border-black hover:bg-zinc-100 transition-all" href="#">HOME</a>
+<a class="bg-primary-container px-6 py-2 border-2 border-black hover:translate-y-[-2px] hover:translate-x-[-2px] hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all" href="#">PRODUCTS</a>
+<a class="px-6 py-2 border-2 border-transparent hover:border-black hover:bg-zinc-100 transition-all" href="#">ABOUT</a>
+<a class="px-6 py-2 border-2 border-transparent hover:border-black hover:bg-zinc-100 transition-all" href="#">QUOTE</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-3xl font-bold">menu</button>
+</div>
+</header>
+<main class="pt-24 pb-16 px-6 lg:px-10 max-w-[1600px] mx-auto">
+<!-- Category Hero / Breadcrumb Block -->
+<div class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6 border-b-2 border-black pb-8">
+<div>
+<div class="flex items-center gap-2 mb-4">
+<span class="text-tertiary font-bold tracking-widest text-xs font-mono">MNGD // USA_SITE_01</span>
+<span class="w-12 h-[1px] bg-tertiary"></span>
+</div>
+<h1 class="text-6xl md:text-8xl font-black font-headline uppercase leading-none tracking-tighter" id="hero-title">
+                ALL_<span class="text-primary-container">PARTS</span>
+</h1>
+<p class="mt-4 font-mono text-sm max-w-xl uppercase tracking-tight text-on-surface-variant" id="hero-desc">
+                COMPLETE DATABASE OF INDUSTRIAL HARDWARE COMPONENTS. Batch: 2024_Q4_GLOBAL.
+            </p>
+</div>
+</div>
+<!-- Main Layout: Sidebar + Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+<!-- Filters Sidebar -->
+<aside class="lg:col-span-3 space-y-10">
+<section>
+<div class="bg-black text-white px-4 py-2 font-headline font-bold uppercase tracking-widest mb-4">
+                    Category_Registry
+                </div>
+<div class="flex flex-col gap-2">
+<button class="cat-btn text-left px-6 py-3 border-2 border-black font-headline font-black uppercase tracking-widest bg-primary-container text-black hover:bg-black hover:text-white transition-all" onclick="updateCategory('ALL', 'ALL_PARTS', 'Complete database of industrial hardware components.')">All_Parts</button>
+<button class="cat-btn text-left px-6 py-3 border-2 border-black font-headline font-black uppercase tracking-widest bg-white text-black hover:bg-black hover:text-white transition-all" onclick="updateCategory('PREMADE', 'PREMADE_ASSETS', 'Standard issue NFC hardware deployment kits.')">Premade_Units</button>
+<button class="cat-btn text-left px-6 py-3 border-2 border-black font-headline font-black uppercase tracking-widest bg-white text-black hover:bg-black hover:text-white transition-all" onclick="updateCategory('CUSTOM', 'CUSTOM_WORKS', 'Bespoke industrial networking solutions tailored to spec.')">Custom_Orders</button>
+<button class="cat-btn text-left px-6 py-3 border-2 border-black font-headline font-black uppercase tracking-widest bg-white text-black hover:bg-black hover:text-white transition-all" onclick="updateCategory('ACCESSORIES', 'ACCESSORIES_MANIFEST', 'Essential add-ons for your tactical NFC setup.')">Accessories</button>
+</div>
+</section>
+<section class="bg-surface-container-highest p-6 outline outline-2 outline-black">
+<h3 class="font-headline font-bold uppercase tracking-widest mb-4 border-b-2 border-black pb-2">Technical_Specs</h3>
+<ul class="space-y-3 font-mono text-[11px] uppercase tracking-wider">
+<li class="flex justify-between"><span>Max_Load</span> <span class="font-bold">450KG</span></li>
+<li class="flex justify-between"><span>Temp_Range</span> <span class="font-bold">-40/120C</span></li>
+<li class="flex justify-between"><span>IP_Rating</span> <span class="font-bold">IP68_CERT</span></li>
+</ul>
+</section>
+</aside>
+<!-- Product Grid -->
+<div class="lg:col-span-9">
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8" id="product-grid">
+<!-- ACCESSORIES -->
+<div class="product-item group bg-white outline outline-2 outline-black flex flex-col h-full" data-category="ACCESSORIES">
+<div class="p-2 bg-black text-white font-mono text-[10px] flex justify-between uppercase"><span>ID: ACC-ST-001</span><span class="text-primary-container">In_Stock</span></div>
+<div class="relative aspect-square bg-surface-container-low overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjbvzJyvNdP_hyyLZ9bQF4kJC6KjVQLJt5Nc1QRbwSabhh2zsz3jSNXtf-Ey2yd3bANMTEb56jLEcRtGad9Z1t3jR_vVe_xp3xdXyAGuWo4ANfJuZ5BagFaDpZHmIcdAkNp0mQKhmKNBLNIvpco8MZWZ3XFYanIjzc8X79O21Xa4yf9S4HOwKXuWsRu2VvotBOJsiWhp77ZgG6V1BIjplaHxt6K8KpfDnm1qePn1QxIA_aEjx5Rj-8r2REj1lPK0vP_5k6ZY2AR9xp"/>
+</div>
+<div class="p-6 flex-grow"><h3 class="font-headline font-extrabold text-xl uppercase tracking-tighter mb-2">Stainless_Steel_Cable</h3><div class="text-2xl font-black font-headline text-black">$42.50</div></div>
+<button class="w-full bg-primary-container border-t-2 border-black p-4 font-headline font-black uppercase tracking-widest hover:bg-black hover:text-white transition-colors" onclick="addToBag('ACC-ST-001', 'Stainless_Steel_Cable', 42.50)">Add To Bag</button>
+</div>
+<div class="product-item group bg-white outline outline-2 outline-black flex flex-col h-full" data-category="ACCESSORIES">
+<div class="p-2 bg-black text-white font-mono text-[10px] flex justify-between uppercase"><span>ID: ACC-RG-042</span><span class="text-primary-container">In_Stock</span></div>
+<div class="aspect-square bg-surface-container-low overflow-hidden"><img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXmUKENxLMzsM1OOuDH76nMtF_WWuW-5s-S8bJLNuJ6zoevRJ-1DYezGLFn2qrgtVTPajqV27kDnSiYOW3sP2DQNFm6dakjfGvku5yNvmUAaPAKoWhM6BJU3rmGbGwqK9EKSiTH8Cf33ZniMsDd30VE1BevdmytCBmhjqyoIsGdk6tYsshbV-_ZXdsRrKmEj52B-DmdC7fC6EYovX1JCNC42nRgwKapCS384Yt2TrGby7LJQeiGLI0YbuFAZClJ-04d4J81K6HfA_r"/></div>
+<div class="p-6 flex-grow"><h3 class="font-headline font-extrabold text-xl uppercase tracking-tighter mb-2">Signal_Dampener</h3><div class="text-2xl font-black font-headline">$18.00</div></div>
+<button class="w-full bg-primary-container border-t-2 border-black p-4 font-headline font-black uppercase" onclick="addToBag('ACC-RG-042', 'Signal_Dampener', 18.00)">Add To Bag</button>
+</div>
+<div class="product-item group bg-white outline outline-2 outline-black flex flex-col h-full" data-category="ACCESSORIES">
+<div class="p-2 bg-black text-white font-mono text-[10px] flex justify-between uppercase"><span>ID: ACC-CO-101</span><span>In_Stock</span></div>
+<div class="aspect-square bg-surface-container-low overflow-hidden"><img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDq3Mf0vpz6YdHEfn3Pl0Ih0Kx9f4DUlQBdp7jmFYY7LAgnsDvUnZQjmEyH4_pmGZ3IS6EE4P4PjDEOrCz6aa8ulxLWwOgB8lZ3Uh2JKNTExORVuxexH7WBLC0bgXkxlA6n1_NtUo7gKjfEydrnwUS9BULPO8Mo7RzkKIQ7YT6RcJXqVBWXa89wOevVllTBD0iJdu4g5e-r3tvP_EqSoCCoi6LR7TNyucna3e8bK-alUpIFJ5R-PPQp4NxY2EpUELwID9CxWNg11ziH"/></div>
+<div class="p-6 flex-grow"><h3 class="font-headline font-extrabold text-xl uppercase tracking-tighter mb-2">Shielded_Connector</h3><div class="text-2xl font-black font-headline">$12.95</div></div>
+<button class="w-full bg-primary-container border-t-2 border-black p-4 font-headline font-black uppercase" onclick="addToBag('ACC-CO-101', 'Shielded_Connector', 12.95)">Add To Bag</button>
+</div>
+<!-- PREMADE -->
+<div class="product-item group bg-white outline outline-2 outline-black flex flex-col h-full" data-category="PREMADE">
+<div class="p-2 bg-black text-white font-mono text-[10px] flex justify-between uppercase"><span>ID: PR-UNIT-01</span><span>In_Stock</span></div>
+<div class="aspect-square bg-surface-container-low overflow-hidden"><img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQiDB4lM5AjuYl6NeFsyQXHsEA0RgKrxakBPla2-A0mRJ3-z4kQwntG081mD-wp86D2FJTCqZov_ZwLwgxoHaXQmwAuZqVobYtah7pPMb09OXsYQ7aFnI9prOWAsBZww9KFzw9-KFzw9-KpSFXBvPEsvmWHiBKpnBYkwf6KaKT3sHlyUj0YLMVpZpBxj9iR8ETRquRD6h0Ni4pgGSiti8kauJ6_0_0vQP6glX0c4jjESyUbOT3MKb3jYEvvwzD3PcqvXlErkyit7oH_-CI_9"/></div>
+<div class="p-6 flex-grow"><h3 class="font-headline font-extrabold text-xl uppercase tracking-tighter mb-2">Standard_NFC_Key</h3><div class="text-2xl font-black font-headline">$99.00</div></div>
+<button class="w-full bg-primary-container border-t-2 border-black p-4 font-headline font-black uppercase" onclick="addToBag('PR-UNIT-01', 'Standard_NFC_Key', 99.00)">Add To Bag</button>
+</div>
+<div class="product-item group bg-white outline outline-2 outline-black flex flex-col h-full" data-category="PREMADE">
+<div class="p-2 bg-black text-white font-mono text-[10px] flex justify-between uppercase"><span>ID: PR-UNIT-02</span><span>In_Stock</span></div>
+<div class="aspect-square bg-surface-container-low overflow-hidden"><img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsf98rXmFhL_e1jA0Gf_W7fXn0W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1"/></div>
+<div class="p-6 flex-grow"><h3 class="font-headline font-extrabold text-xl uppercase tracking-tighter mb-2">Rugged_Scanner_V1</h3><div class="text-2xl font-black font-headline">$245.00</div></div>
+<button class="w-full bg-primary-container border-t-2 border-black p-4 font-headline font-black uppercase" onclick="addToBag('PR-UNIT-02', 'Rugged_Scanner_V1', 245.00)">Add To Bag</button>
+</div>
+<div class="product-item group bg-white outline outline-2 outline-black flex flex-col h-full" data-category="PREMADE">
+<div class="p-2 bg-black text-white font-mono text-[10px] flex justify-between uppercase"><span>ID: PR-UNIT-03</span><span>In_Stock</span></div>
+<div class="aspect-square bg-surface-container-low overflow-hidden"><img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuByX7eR6_XnL9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk"/></div>
+<div class="p-6 flex-grow"><h3 class="font-headline font-extrabold text-xl uppercase tracking-tighter mb-2">Admin_Console_Lite</h3><div class="text-2xl font-black font-headline">$520.00</div></div>
+<button class="w-full bg-primary-container border-t-2 border-black p-4 font-headline font-black uppercase" onclick="addToBag('PR-UNIT-03', 'Admin_Console_Lite', 520.00)">Add To Bag</button>
+</div>
+<!-- CUSTOM -->
+<div class="product-item group bg-white outline outline-2 outline-black flex flex-col h-full" data-category="CUSTOM">
+<div class="p-2 bg-black text-white font-mono text-[10px] flex justify-between uppercase"><span>ID: CU-SPEC-01</span><span>Backorder</span></div>
+<div class="aspect-square bg-surface-container-low overflow-hidden"><img class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPY0vV1-TzH4_pmGZ3IS6EE4P4PjDEOrCz6aa8ulxLWwOgB8lZ3Uh2JKNTExORVuxexH7WBLC0bgXkxlA6n1_NtUo7gKjfEydrnwUS9BULPO8Mo7RzkKIQ7YT6RcJXqVBWXa89wOevVllTBD0iJdu4g5e-r3tvP_EqSoCCoi6LR7TNyucna3e8bK-alUpIFJ5R-PPQp4NxY2EpUELwID9CxWNg11ziH"/></div>
+<div class="p-6 flex-grow"><h3 class="font-headline font-extrabold text-xl uppercase tracking-tighter mb-2">Titanium_Chassis</h3><div class="text-2xl font-black font-headline">$1,200.00</div></div>
+<button class="w-full bg-primary-container border-t-2 border-black p-4 font-headline font-black uppercase" onclick="addToBag('CU-SPEC-01', 'Titanium_Chassis', 1200.00)">Add To Bag</button>
+</div>
+<div class="product-item group bg-white outline outline-2 outline-black flex flex-col h-full" data-category="CUSTOM">
+<div class="p-2 bg-black text-white font-mono text-[10px] flex justify-between uppercase"><span>ID: CU-SPEC-02</span><span>Custom_Build</span></div>
+<div class="aspect-square bg-surface-container-low overflow-hidden"><img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8k9jF1_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk"/></div>
+<div class="p-6 flex-grow"><h3 class="font-headline font-extrabold text-xl uppercase tracking-tighter mb-2">Quantum_Relay</h3><div class="text-2xl font-black font-headline">$4,500.00</div></div>
+<button class="w-full bg-primary-container border-t-2 border-black p-4 font-headline font-black uppercase" onclick="addToBag('CU-SPEC-02', 'Quantum_Relay', 4500.00)">Add To Bag</button>
+</div>
+<div class="product-item group bg-white outline outline-2 outline-black flex flex-col h-full" data-category="CUSTOM">
+<div class="p-2 bg-black text-white font-mono text-[10px] flex justify-between uppercase"><span>ID: CU-SPEC-03</span><span>In_Stock</span></div>
+<div class="aspect-square bg-surface-container-low overflow-hidden"><img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuFj_M1-TzH4_pmGZ3IS6EE4P4PjDEOrCz6aa8ulxLWwOgB8lZ3Uh2JKNTExORVuxexH7WBLC0bgXkxlA6n1_NtUo7gKjfEydrnwUS9BULPO8Mo7RzkKIQ7YT6RcJXqVBWXa89wOevVllTBD0iJdu4g5e-r3tvP_EqSoCCoi6LR7TNyucna3e8bK-alUpIFJ5R-PPQp4NxY2EpUELwID9CxWNg11ziH"/></div>
+<div class="p-6 flex-grow"><h3 class="font-headline font-extrabold text-xl uppercase tracking-tighter mb-2">Hard_Mesh_Network</h3><div class="text-2xl font-black font-headline">$850.00</div></div>
+<button class="w-full bg-primary-container border-t-2 border-black p-4 font-headline font-black uppercase" onclick="addToBag('CU-SPEC-03', 'Hard_Mesh_Network', 850.00)">Add To Bag</button>
+</div>
+<!-- Additional Placeholders to ensure 6 per category (shared items for demo) -->
+<div class="product-item group bg-white outline outline-2 outline-black flex flex-col h-full" data-category="ACCESSORIES">
+<div class="p-2 bg-black text-white font-mono text-[10px] flex justify-between uppercase"><span>ID: ACC-WL-009</span><span>In_Stock</span></div>
+<div class="aspect-square bg-surface-container-low overflow-hidden"><img class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXmUKENxLMzsM1OOuDH76nMtF_WWuW-5s-S8bJLNuJ6zoevRJ-1DYezGLFn2qrgtVTPajqV27kDnSiYOW3sP2DQNFm6dakjfGvku5yNvmUAaPAKoWhM6BJU3rmGbGwqK9EKSiTH8Cf33ZniMsDd30VE1BevdmytCBmhjqyoIsGdk6tYsshbV-_ZXdsRrKmEj52B-DmdC7fC6EYovX1JCNC42nRgwKapCS384Yt2TrGby7LJQeiGLI0YbuFAZClJ-04d4J81K6HfA_r"/></div>
+<div class="p-6 flex-grow"><h3 class="font-headline font-extrabold text-xl uppercase tracking-tighter mb-2">Wall_Mount_Kit</h3><div class="text-2xl font-black font-headline">$35.00</div></div>
+<button class="w-full bg-primary-container border-t-2 border-black p-4 font-headline font-black uppercase" onclick="addToBag('ACC-WL-009', 'Wall_Mount_Kit', 35.00)">Add To Bag</button>
+</div>
+<div class="product-item group bg-white outline outline-2 outline-black flex flex-col h-full" data-category="ACCESSORIES">
+<div class="p-2 bg-black text-white font-mono text-[10px] flex justify-between uppercase"><span>ID: ACC-BR-055</span><span>In_Stock</span></div>
+<div class="aspect-square bg-surface-container-low overflow-hidden"><img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXmUKENxLMzsM1OOuDH76nMtF_WWuW-5s-S8bJLNuJ6zoevRJ-1DYezGLFn2qrgtVTPajqV27kDnSiYOW3sP2DQNFm6dakjfGvku5yNvmUAaPAKoWhM6BJU3rmGbGwqK9EKSiTH8Cf33ZniMsDd30VE1BevdmytCBmhjqyoIsGdk6tYsshbV-_ZXdsRrKmEj52B-DmdC7fC6EYovX1JCNC42nRgwKapCS384Yt2TrGby7LJQeiGLI0YbuFAZClJ-04d4J81K6HfA_r"/></div>
+<div class="p-6 flex-grow"><h3 class="font-headline font-extrabold text-xl uppercase tracking-tighter mb-2">Brass_Terminal</h3><div class="text-2xl font-black font-headline">$14.50</div></div>
+<button class="w-full bg-primary-container border-t-2 border-black p-4 font-headline font-black uppercase" onclick="addToBag('ACC-BR-055', 'Brass_Terminal', 14.50)">Add To Bag</button>
+</div>
+<div class="product-item group bg-white outline outline-2 outline-black flex flex-col h-full" data-category="ACCESSORIES">
+<div class="p-2 bg-black text-white font-mono text-[10px] flex justify-between uppercase"><span>ID: ACC-TP-202</span><span>In_Stock</span></div>
+<div class="aspect-square bg-surface-container-low overflow-hidden"><img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjbvzJyvNdP_hyyLZ9bQF4kJC6KjVQLJt5Nc1QRbwSabhh2zsz3jSNXtf-Ey2yd3bANMTEb56jLEcRtGad9Z1t3jR_vVe_xp3xdXyAGuWo4ANfJuZ5BagFaDpZHmIcdAkNp0mQKhmKNBLNIvpco8MZWZ3XFYanIjzc8X79O21Xa4yf9S4HOwKXuWsRu2VvotBOJsiWhp77ZgG6V1BIjplaHxt6K8KpfDnm1qePn1QxIA_aEjx5Rj-8r2REj1lPK0vP_5k6ZY2AR9xp"/></div>
+<div class="p-6 flex-grow"><h3 class="font-headline font-extrabold text-xl uppercase tracking-tighter mb-2">Teflon_Patch</h3><div class="text-2xl font-black font-headline">$9.00</div></div>
+<button class="w-full bg-primary-container border-t-2 border-black p-4 font-headline font-black uppercase" onclick="addToBag('ACC-TP-202', 'Teflon_Patch', 9.00)">Add To Bag</button>
+</div>
+<!-- More placeholders for PREMADE and CUSTOM to hit 6... -->
+<div class="product-item group bg-white outline outline-2 outline-black flex flex-col h-full" data-category="PREMADE">
+<div class="p-2 bg-black text-white font-mono text-[10px] flex justify-between uppercase"><span>ID: PR-UNIT-04</span><span>In_Stock</span></div>
+<div class="aspect-square bg-surface-container-low overflow-hidden"><img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsf98rXmFhL_e1jA0Gf_W7fXn0W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1W1"/></div>
+<div class="p-6 flex-grow"><h3 class="font-headline font-extrabold text-xl uppercase tracking-tighter mb-2">Industrial_Key_Pad</h3><div class="text-2xl font-black font-headline">$155.00</div></div>
+<button class="w-full bg-primary-container border-t-2 border-black p-4 font-headline font-black uppercase" onclick="addToBag('PR-UNIT-04', 'Industrial_Key_Pad', 155.00)">Add To Bag</button>
+</div>
+<div class="product-item group bg-white outline outline-2 outline-black flex flex-col h-full" data-category="PREMADE">
+<div class="p-2 bg-black text-white font-mono text-[10px] flex justify-between uppercase"><span>ID: PR-UNIT-05</span><span>In_Stock</span></div>
+<div class="aspect-square bg-surface-container-low overflow-hidden"><img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuByX7eR6_XnL9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk"/></div>
+<div class="p-6 flex-grow"><h3 class="font-headline font-extrabold text-xl uppercase tracking-tighter mb-2">Relay_Node_X1</h3><div class="text-2xl font-black font-headline">$89.00</div></div>
+<button class="w-full bg-primary-container border-t-2 border-black p-4 font-headline font-black uppercase" onclick="addToBag('PR-UNIT-05', 'Relay_Node_X1', 89.00)">Add To Bag</button>
+</div>
+<div class="product-item group bg-white outline outline-2 outline-black flex flex-col h-full" data-category="PREMADE">
+<div class="p-2 bg-black text-white font-mono text-[10px] flex justify-between uppercase"><span>ID: PR-UNIT-06</span><span>In_Stock</span></div>
+<div class="aspect-square bg-surface-container-low overflow-hidden"><img class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQiDB4lM5AjuYl6NeFsyQXHsEA0RgKrxakBPla2-A0mRJ3-z4kQwntG081mD-wp86D2FJTCqZov_ZwLwgxoHaXQmwAuZqVobYtah7pPMb09OXsYQ7aFnI9prOWAsBZww9KFzw9-KFzw9-KpSFXBvPEsvmWHiBKpnBYkwf6KaKT3sHlyUj0YLMVpZpBxj9iR8ETRquRD6h0Ni4pgGSiti8kauJ6_0_0vQP6glX0c4jjESyUbOT3MKb3jYEvvwzD3PcqvXlErkyit7oH_-CI_9"/></div>
+<div class="p-6 flex-grow"><h3 class="font-headline font-extrabold text-xl uppercase tracking-tighter mb-2">Backup_Transponder</h3><div class="text-2xl font-black font-headline">$42.00</div></div>
+<button class="w-full bg-primary-container border-t-2 border-black p-4 font-headline font-black uppercase" onclick="addToBag('PR-UNIT-06', 'Backup_Transponder', 42.00)">Add To Bag</button>
+</div>
+<!-- Custom extra 3... -->
+<div class="product-item group bg-white outline outline-2 outline-black flex flex-col h-full" data-category="CUSTOM">
+<div class="p-2 bg-black text-white font-mono text-[10px] flex justify-between uppercase"><span>ID: CU-SPEC-04</span><span>In_Stock</span></div>
+<div class="aspect-square bg-surface-container-low overflow-hidden"><img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8k9jF1_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk_L9tFk"/></div>
+<div class="p-6 flex-grow"><h3 class="font-headline font-extrabold text-xl uppercase tracking-tighter mb-2">Shielded_Case_Large</h3><div class="text-2xl font-black font-headline">$320.00</div></div>
+<button class="w-full bg-primary-container border-t-2 border-black p-4 font-headline font-black uppercase" onclick="addToBag('CU-SPEC-04', 'Shielded_Case_Large', 320.00)">Add To Bag</button>
+</div>
+<div class="product-item group bg-white outline outline-2 outline-black flex flex-col h-full" data-category="CUSTOM">
+<div class="p-2 bg-black text-white font-mono text-[10px] flex justify-between uppercase"><span>ID: CU-SPEC-05</span><span>Special_Request</span></div>
+<div class="aspect-square bg-surface-container-low overflow-hidden"><img class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDq3Mf0vpz6YdHEfn3Pl0Ih0Kx9f4DUlQBdp7jmFYY7LAgnsDvUnZQjmEyH4_pmGZ3IS6EE4P4PjDEOrCz6aa8ulxLWwOgB8lZ3Uh2JKNTExORVuxexH7WBLC0bgXkxlA6n1_NtUo7gKjfEydrnwUS9BULPO8Mo7RzkKIQ7YT6RcJXqVBWXa89wOevVllTBD0iJdu4g5e-r3tvP_EqSoCCoi6LR7TNyucna3e8bK-alUpIFJ5R-PPQp4NxY2EpUELwID9CxWNg11ziH"/></div>
+<div class="p-6 flex-grow"><h3 class="font-headline font-extrabold text-xl uppercase tracking-tighter mb-2">High_Gain_Antenna</h3><div class="text-2xl font-black font-headline">$180.00</div></div>
+<button class="w-full bg-primary-container border-t-2 border-black p-4 font-headline font-black uppercase" onclick="addToBag('CU-SPEC-05', 'High_Gain_Antenna', 180.00)">Add To Bag</button>
+</div>
+<div class="product-item group bg-white outline outline-2 outline-black flex flex-col h-full" data-category="CUSTOM">
+<div class="p-2 bg-black text-white font-mono text-[10px] flex justify-between uppercase"><span>ID: CU-SPEC-06</span><span>In_Stock</span></div>
+<div class="aspect-square bg-surface-container-low overflow-hidden"><img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuFj_M1-TzH4_pmGZ3IS6EE4P4PjDEOrCz6aa8ulxLWwOgB8lZ3Uh2JKNTExORVuxexH7WBLC0bgXkxlA6n1_NtUo7gKjfEydrnwUS9BULPO8Mo7RzkKIQ7YT6RcJXqVBWXa89wOevVllTBD0iJdu4g5e-r3tvP_EqSoCCoi6LR7TNyucna3e8bK-alUpIFJ5R-PPQp4NxY2EpUELwID9CxWNg11ziH"/></div>
+<div class="p-6 flex-grow"><h3 class="font-headline font-extrabold text-xl uppercase tracking-tighter mb-2">Network_Bridge_X</h3><div class="text-2xl font-black font-headline">$415.00</div></div>
+<button class="w-full bg-primary-container border-t-2 border-black p-4 font-headline font-black uppercase" onclick="addToBag('CU-SPEC-06', 'Network_Bridge_X', 415.00)">Add To Bag</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Cart FAB -->
+<button class="fixed bottom-8 right-8 z-[70] bg-primary-container text-black w-16 h-16 flex items-center justify-center border-4 border-black hard-shadow hover:-translate-y-1 transition-all" id="cart-fab" onclick="toggleCart()">
+<span class="material-symbols-outlined text-3xl font-bold">shopping_cart</span>
+<span class="absolute -top-3 -right-3 bg-tertiary text-white text-xs font-bold px-2 py-1 border-2 border-black hidden" id="cart-count">0</span>
+</button>
+<!-- Footer Component -->
+<footer class="bg-black dark:bg-zinc-900 border-t-8 border-black grid grid-cols-1 md:grid-cols-2 gap-8 w-full px-10 py-12">
+<div class="space-y-6">
+<div class="text-sky-500 font-bold text-2xl font-headline italic uppercase tracking-tighter">TAGD_USA_S_01</div>
+<p class="text-zinc-500 font-mono text-xs uppercase leading-relaxed max-w-sm">
+            Deployment of industrial security hardware and protocol management. All components manufactured to aerospace tolerances.
+        </p>
+<div class="flex items-center gap-2">
+<span class="text-tertiary material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-mono text-white text-[10px] tracking-[0.2em]">MNGD // USA_SITE_01 © 2024</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-2">
+<div class="text-white font-mono text-[10px] border-b border-zinc-800 pb-2 mb-2">PROTOCOLS</div>
+<a class="block text-zinc-500 font-mono text-xs hover:text-white transition-colors" href="#">INDUSTRIAL_SPECS</a>
+<a class="block text-zinc-500 font-mono text-xs hover:text-white transition-colors" href="#">NFC_PROTOCOLS</a>
+</div>
+<div class="space-y-2">
+<div class="text-white font-mono text-[10px] border-b border-zinc-800 pb-2 mb-2">REGISTRY</div>
+<a class="block text-zinc-500 font-mono text-xs hover:text-white transition-colors" href="#">LEGAL_MANIFEST</a>
+<a class="block text-zinc-500 font-mono text-xs hover:text-white transition-colors" href="#">CONTACT</a>
+</div>
+</div>
+</footer>
+<script>
+    let cart = [];
+    const SHIPPING = 12.00;
+    const TAX_RATE = 0.12;
+
+    function updateCategory(catId, title, desc) {
+        const heroTitle = document.getElementById('hero-title');
+        const heroDesc = document.getElementById('hero-desc');
+        const parts = title.split('_');
+        if (parts.length > 1) {
+            heroTitle.innerHTML = parts[0] + '_<span class="text-primary-container">' + parts[1] + '</span>';
+        } else {
+            heroTitle.textContent = title;
+        }
+        heroDesc.textContent = desc.toUpperCase() + ' BATCH: 2024_Q4_' + catId + '.';
+
+        document.querySelectorAll('.cat-btn').forEach(btn => {
+            btn.classList.remove('bg-primary-container');
+            btn.classList.add('bg-white');
+        });
+        if(event) event.currentTarget.classList.remove('bg-white');
+        if(event) event.currentTarget.classList.add('bg-primary-container');
+
+        document.querySelectorAll('.product-item').forEach(item => {
+            if (catId === 'ALL') {
+                item.classList.remove('hidden');
+            } else if (item.dataset.category === catId) {
+                item.classList.remove('hidden');
+            } else {
+                item.classList.add('hidden');
+            }
+        });
+    }
+
+    function toggleCart() {
+        const overlay = document.getElementById('cart-overlay');
+        overlay.classList.toggle('hidden');
+        renderCart();
+    }
+
+    function addToBag(id, name, price) {
+        const existing = cart.find(item => item.id === id);
+        if (existing) {
+            existing.qty++;
+        } else {
+            cart.push({ id, name, price, qty: 1 });
+        }
+        updateCartCount();
+        
+        const fab = document.getElementById('cart-fab');
+        fab.classList.add('scale-110', 'bg-tertiary', 'text-white');
+        setTimeout(() => {
+            fab.classList.remove('scale-110', 'bg-tertiary', 'text-white');
+        }, 300);
+    }
+
+    function updateQty(id, delta) {
+        const item = cart.find(i => i.id === id);
+        if (item) {
+            item.qty += delta;
+            if (item.qty <= 0) {
+                cart = cart.filter(i => i.id !== id);
+            }
+        }
+        renderCart();
+        updateCartCount();
+    }
+
+    function updateCartCount() {
+        const badge = document.getElementById('cart-count');
+        const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+        badge.textContent = totalItems.toString().padStart(2, '0');
+        if (totalItems > 0) badge.classList.remove('hidden');
+        else badge.classList.add('hidden');
+    }
+
+    function renderCart() {
+        const list = document.getElementById('cart-items-list');
+        if (cart.length === 0) {
+            list.innerHTML = '<div class="text-zinc-400 font-mono text-center py-10 uppercase tracking-widest">[ MANIFEST_EMPTY ]</div>';
+            updateTotals(0);
+            return;
+        }
+
+        let html = '';
+        let subtotal = 0;
+        cart.forEach(item => {
+            const itemTotal = item.price * item.qty;
+            subtotal += itemTotal;
+            html += `
+                <div class="border-2 border-black p-4 flex flex-col gap-2">
+<div class="flex justify-between items-start font-headline font-bold uppercase text-sm tracking-tight">
+<span>${item.name}</span>
+<span>$${itemTotal.toFixed(2)}</span>
+</div>
+<div class="flex justify-between items-center font-mono text-[10px]">
+<span class="text-zinc-500">UNIT_COST: $${item.price.toFixed(2)}</span>
+<div class="flex items-center gap-3 border-2 border-black">
+<button class="px-2 hover:bg-black hover:text-white" onclick="updateQty('${item.id}', -1)">-</button>
+<span class="font-bold">${item.qty}</span>
+<button class="px-2 hover:bg-black hover:text-white" onclick="updateQty('${item.id}', 1)">+</button>
+</div>
+</div>
+</div>
+            `;
+        });
+        list.innerHTML = html;
+        updateTotals(subtotal);
+    }
+
+    function updateTotals(subtotal) {
+        const tax = subtotal * TAX_RATE;
+        const total = subtotal > 0 ? subtotal + SHIPPING + tax : 0;
+        
+        document.getElementById('cart-subtotal').textContent = `$${subtotal.toFixed(2)}`;
+        document.getElementById('cart-tax').textContent = `$${tax.toFixed(2)}`;
+        document.getElementById('cart-total').textContent = `$${total.toFixed(2)}`;
+    }
+
+    function executeDeployment() {
+        if (cart.length === 0) {
+            alert('ERROR: MANIFEST_EMPTY. CANNOT_EXECUTE.');
+            return;
+        }
+        alert('DEPLOYMENT_INITIATED: Processing Order For Shipment.');
+        cart = [];
+        updateCartCount();
+        toggleCart();
+    }
+    </script>
+<div class="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm hidden flex justify-end" id="cart-overlay">
+<div class="w-full max-w-md bg-white h-full border-l-8 border-black flex flex-col">
+<div class="p-6 border-b-4 border-black bg-black text-white flex justify-between items-center">
+<h2 class="font-headline font-black uppercase tracking-widest text-xl">ACTIVE_MANIFEST</h2>
+<button class="material-symbols-outlined" onclick="toggleCart()">close</button>
+</div>
+<div class="flex-grow overflow-y-auto p-6 space-y-4" id="cart-items-list">
+<!-- Items will be injected here -->
+<div class="text-zinc-400 font-mono text-center py-10 uppercase tracking-widest">[ MANIFEST_EMPTY ]</div>
+</div>
+<div class="p-6 border-t-4 border-black bg-zinc-50 space-y-2">
+<div class="flex justify-between font-mono text-xs uppercase"><span>Subtotal</span><span id="cart-subtotal">$0.00</span></div>
+<div class="flex justify-between font-mono text-xs uppercase"><span>Logistics (Flat)</span><span>$12.00</span></div>
+<div class="flex justify-between font-mono text-xs uppercase"><span>TX_State_Tax (12%)</span><span id="cart-tax">$0.00</span></div>
+<div class="flex justify-between font-headline font-black text-xl uppercase mt-4 pt-4 border-t-2 border-dashed border-zinc-300">
+<span>Total_Cost</span>
+<span id="cart-total">$0.00</span>
+</div>
+<button class="w-full bg-primary-container border-4 border-black p-4 mt-6 font-headline font-black uppercase tracking-widest hover:bg-black hover:text-white transition-all" onclick="executeDeployment()">
+                EXECUTE_DEPLOYMENT
+            </button>
+</div>
+</div>
+</div></body></html>
