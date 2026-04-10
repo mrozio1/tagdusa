@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&amp;family=Inter:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-container": "#646464",
+                    "surface": "#f9f9f9",
+                    "error": "#ba1a1a",
+                    "secondary": "#5e5e5e",
+                    "surface-container-low": "#f3f3f3",
+                    "on-background": "#1a1c1c",
+                    "on-primary-fixed-variant": "#004c69",
+                    "outline-variant": "#bcc8d1",
+                    "secondary-fixed": "#e2e2e2",
+                    "surface-container-highest": "#e2e2e2",
+                    "surface-bright": "#f9f9f9",
+                    "primary-fixed-dim": "#7ad0ff",
+                    "secondary-fixed-dim": "#c6c6c6",
+                    "inverse-primary": "#7ad0ff",
+                    "on-primary": "#ffffff",
+                    "surface-dim": "#dadada",
+                    "on-tertiary-container": "#8f000f",
+                    "background": "#f9f9f9",
+                    "inverse-surface": "#2f3131",
+                    "on-surface-variant": "#3d4850",
+                    "primary": "#00668a",
+                    "on-tertiary": "#ffffff",
+                    "inverse-on-surface": "#f1f1f1",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed": "#ffdad6",
+                    "on-secondary-fixed": "#1b1b1b",
+                    "on-tertiary-fixed": "#410003",
+                    "tertiary-fixed-dim": "#ffb3ac",
+                    "surface-variant": "#e2e2e2",
+                    "surface-tint": "#00668a",
+                    "error-container": "#ffdad6",
+                    "on-primary-container": "#004a65",
+                    "secondary-container": "#e2e2e2",
+                    "primary-fixed": "#c3e8ff",
+                    "on-tertiary-fixed-variant": "#930010",
+                    "on-primary-fixed": "#001e2c",
+                    "primary-container": "#00bfff",
+                    "outline": "#6d7981",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-high": "#e8e8e8",
+                    "on-error": "#ffffff",
+                    "tertiary-container": "#ff958c",
+                    "tertiary": "#ba1a20",
+                    "on-surface": "#1a1c1c",
+                    "on-secondary-fixed-variant": "#474747",
+                    "on-error-container": "#93000a",
+                    "surface-container": "#eeeeee"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0px",
+                    "lg": "0px",
+                    "xl": "0px",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Space Grotesk"],
+                    "body": ["Inter"],
+                    "label": ["Space Grotesk"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .brutal-shadow {
+            box-shadow: 8px 8px 0px 0px rgba(0,0,0,1);
+        }
+        .brutal-shadow-hover:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 12px 12px 0px 0px rgba(0,0,0,1);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- TopNavBar -->
+<nav class="bg-stone-950 w-full top-0 border-b-4 border-black flex justify-between items-center px-6 py-4 sticky z-50">
+<div class="flex items-center gap-4">
+<img alt="Industrial graffiti style logo for TAGD USA with bold blue and black strokes on a clean background" class="h-12 w-auto object-contain" data-alt="Industrial graffiti style logo for TAGD USA with bold blue and black strokes on a clean background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB88g1HnMzGWzhHlR5-yFH_l_ZjTe_BQcfP5sZlZIDmRLamrDvb0oUbAr2M04XSnHQOpoS-9U1qfGNP81cPkDGOXmeO30b-VF6FMcE6ewxyP7cGC1Mw0fWM42PgepLHdbpDfKrLnJkmeaBs6tYDmWr7eJi5AvRAsgw0TMa2jhXs3eXMyFtMLgHdRQHY2bKVTYQQxV0FEIAVokTo_kqX3nCUOlnITIaoiL8rGCzZm6jedqEmQslM608CIeQ2tIT-_pvqU-Qk8EQGMs_i"/>
+<span class="text-4xl font-black italic tracking-tighter text-cyan-400 dark:text-cyan-400 font-['Space_Grotesk'] uppercase">TAGD USA</span>
+</div>
+<div class="hidden md:flex items-center space-x-8 font-['Space_Grotesk'] uppercase tracking-tighter">
+<a class="text-stone-300 hover:bg-cyan-400 hover:text-black transition-colors duration-150 px-2 py-1" href="#">Inventory</a>
+<a class="text-stone-300 hover:bg-cyan-400 hover:text-black transition-colors duration-150 px-2 py-1" href="#">Capabilities</a>
+<a class="text-stone-300 hover:bg-cyan-400 hover:text-black transition-colors duration-150 px-2 py-1" href="#">History</a>
+<a class="text-stone-300 hover:bg-cyan-400 hover:text-black transition-colors duration-150 px-2 py-1" href="#">Support</a>
+</div>
+<button class="bg-cyan-400 text-black font-['Space_Grotesk'] font-black px-6 py-2 border-2 border-black brutal-shadow-hover transition-all uppercase tracking-tighter">
+            GET QUOTE
+        </button>
+</nav>
+<main class="min-h-screen pt-12 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+<!-- Header Section -->
+<div class="mb-16 border-l-8 border-primary-container pl-6">
+<h1 class="text-6xl md:text-8xl font-headline font-black uppercase tracking-tighter leading-none mb-4">
+                REQUEST <br/> <span class="text-primary-container">FOR QUOTE</span>
+</h1>
+<p class="font-mono text-sm tracking-widest uppercase text-secondary">CUSTOMIZED_SOLUTIONS // RFQ_V.01 // TAGD_USA</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+<!-- Form Section -->
+<div class="lg:col-span-8">
+<form class="space-y-12">
+<!-- Identification Block -->
+<div class="border-4 border-black p-8 bg-white brutal-shadow">
+<div class="bg-black text-white px-4 py-1 mb-8 inline-block font-mono text-xs tracking-widest uppercase">
+                            BLOCK_01 // IDENTIFICATION</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="relative">
+<label class="absolute -top-3 left-4 bg-white px-2 font-mono text-xs font-bold uppercase tracking-widest">Full Name</label>
+<input class="w-full border-2 border-black p-4 focus:ring-0 focus:border-primary-container text-lg font-headline font-bold uppercase" placeholder="_NAME" type="text"/>
+</div>
+<div class="relative">
+<label class="absolute -top-3 left-4 bg-white px-2 font-mono text-xs font-bold uppercase tracking-widest">Company Name</label>
+<input class="w-full border-2 border-black p-4 focus:ring-0 focus:border-primary-container text-lg font-headline font-bold uppercase" placeholder="_FACILITY" type="text"/>
+</div>
+<div class="relative">
+<label class="absolute -top-3 left-4 bg-white px-2 font-mono text-xs font-bold uppercase tracking-widest">Phone Number</label>
+<input class="w-full border-2 border-black p-4 focus:ring-0 focus:border-primary-container text-lg font-headline font-bold uppercase" placeholder="+1 (000) 000-0000" type="tel"/>
+</div>
+<div class="relative">
+<label class="absolute -top-3 left-4 bg-white px-2 font-mono text-xs font-bold uppercase tracking-widest">Email Address</label>
+<input class="w-full border-2 border-black p-4 focus:ring-0 focus:border-primary-container text-lg font-headline font-bold uppercase" placeholder="COMMS@DOMAIN.COM" type="email"/>
+</div>
+</div>
+</div>
+<!-- Configuration Block -->
+<div class="border-4 border-black p-8 bg-white brutal-shadow">
+<div class="bg-black text-white px-4 py-1 mb-8 inline-block font-mono text-xs tracking-widest uppercase">
+                            BLOCK_02 // SPECS_AND_QUANTITY</div>
+<div class="space-y-10">
+<div class="relative">
+<label class="absolute -top-3 left-4 bg-white px-2 font-mono text-xs font-bold uppercase tracking-widest">Order Quantity</label>
+<input class="w-48 border-2 border-black p-4 focus:ring-0 focus:border-primary-container text-2xl font-headline font-black" placeholder="0000" type="number"/>
+</div>
+<div>
+<h3 class="font-headline font-black text-xl uppercase tracking-tighter mb-4 flex items-center gap-2">
+<span class="w-3 h-3 bg-tertiary"></span> COLOR SELECTION <span class="text-secondary font-mono text-xs">(MAX 4)</span>
+</h3>
+<div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
+<!-- 24 Color Blocks -->
+<label class="group relative cursor-pointer">
+<input class="peer sr-only" type="checkbox"/>
+<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
+<div class="w-full h-8 bg-black"></div>
+<span class="font-mono text-[9px] font-bold uppercase truncate">OBSIDIAN_01</span>
+</div>
+</label>
+<label class="group relative cursor-pointer">
+<input checked="" class="peer sr-only" type="checkbox"/>
+<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
+<div class="w-full h-8 bg-cyan-400"></div>
+<span class="font-mono text-[9px] font-bold uppercase truncate">CYAN_PULSE</span>
+</div>
+</label>
+<label class="group relative cursor-pointer">
+<input class="peer sr-only" type="checkbox"/>
+<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
+<div class="w-full h-8 bg-stone-300"></div>
+<span class="font-mono text-[9px] font-bold uppercase truncate">IND_GREY</span>
+</div>
+</label>
+<label class="group relative cursor-pointer">
+<input class="peer sr-only" type="checkbox"/>
+<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
+<div class="w-full h-8 bg-tertiary"></div>
+<span class="font-mono text-[9px] font-bold uppercase truncate">HERITAGE_RED</span>
+</div>
+</label>
+<label class="group relative cursor-pointer">
+<input class="peer sr-only" type="checkbox"/>
+<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
+<div class="w-full h-8 bg-stone-700"></div>
+<span class="font-mono text-[9px] font-bold uppercase truncate">GUNMETAL_60</span>
+</div>
+</label>
+<label class="group relative cursor-pointer">
+<input class="peer sr-only" type="checkbox"/>
+<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
+<div class="w-full h-8 bg-emerald-900"></div>
+<span class="font-mono text-[9px] font-bold uppercase truncate">TACTICAL_GRN</span>
+</div>
+</label>
+<label class="group relative cursor-pointer">
+<input class="peer sr-only" type="checkbox"/>
+<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
+<div class="w-full h-8 bg-slate-500"></div>
+<span class="font-mono text-[9px] font-bold uppercase truncate">NAVY_STEEL</span>
+</div>
+</label>
+<label class="group relative cursor-pointer">
+<input class="peer sr-only" type="checkbox"/>
+<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
+<div class="w-full h-8 bg-zinc-400"></div>
+<span class="font-mono text-[9px] font-bold uppercase truncate">ALUM_ALLOY</span>
+</div>
+</label>
+<label class="group relative cursor-pointer">
+<input class="peer sr-only" type="checkbox"/>
+<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
+<div class="w-full h-8 bg-orange-600"></div>
+<span class="font-mono text-[9px] font-bold uppercase truncate">SAFETY_ORG</span>
+</div>
+</label>
+<label class="group relative cursor-pointer">
+<input class="peer sr-only" type="checkbox"/>
+<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
+<div class="w-full h-8 bg-stone-900"></div>
+<span class="font-mono text-[9px] font-bold uppercase truncate">VOID_BLACK</span>
+</div>
+</label>
+<label class="group relative cursor-pointer">
+<input class="peer sr-only" type="checkbox"/>
+<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
+<div class="w-full h-8 bg-blue-900"></div>
+<span class="font-mono text-[9px] font-bold uppercase truncate">DEEP_HULL</span>
+</div>
+</label>
+<label class="group relative cursor-pointer">
+<input class="peer sr-only" type="checkbox"/>
+<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
+<div class="w-full h-8 bg-lime-950"></div>
+<span class="font-mono text-[9px] font-bold uppercase truncate">OLIVE_DRAB</span>
+</div>
+</label>
+<label class="group relative cursor-pointer">
+<input class="peer sr-only" type="checkbox"/>
+<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
+<div class="w-full h-8 bg-yellow-500"></div>
+<span class="font-mono text-[9px] font-bold uppercase truncate">CAUTION_YLW</span>
+</div>
+</label>
+<label class="group relative cursor-pointer">
+<input class="peer sr-only" type="checkbox"/>
+<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
+<div class="w-full h-8 bg-slate-800"></div>
+<span class="font-mono text-[9px] font-bold uppercase truncate">CARBON_CORE</span>
+</div>
+</label>
+<label class="group relative cursor-pointer">
+<input class="peer sr-only" type="checkbox"/>
+<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
+<div class="w-full h-8 bg-stone-500"></div>
+<span class="font-mono text-[9px] font-bold uppercase truncate">CONCRETE_V1</span>
+</div>
+</label>
+<label class="group relative cursor-pointer">
+<input class="peer sr-only" type="checkbox"/>
+<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
+<div class="w-full h-8 bg-sky-900"></div>
+<span class="font-mono text-[9px] font-bold uppercase truncate">MARITIME_BL</span>
+</div>
+</label>
+<label class="group relative cursor-pointer">
+<input class="peer sr-only" type="checkbox"/>
+<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
+<div class="w-full h-8 bg-red-900"></div>
+<span class="font-mono text-[9px] font-bold uppercase truncate">OXIDE_RED</span>
+</div>
+</label>
+<label class="group relative cursor-pointer">
+<input class="peer sr-only" type="checkbox"/>
+<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
+<div class="w-full h-8 bg-zinc-800"></div>
+<span class="font-mono text-[9px] font-bold uppercase truncate">IRON_OXIDE</span>
+</div>
+</label>
+<label class="group relative cursor-pointer">
+<input class="peer sr-only" type="checkbox"/>
+<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
+<div class="w-full h-8 bg-emerald-700"></div>
+<span class="font-mono text-[9px] font-bold uppercase truncate">FOREST_OPS</span>
+</div>
+</label>
+<label class="group relative cursor-pointer">
+<input class="peer sr-only" type="checkbox"/>
+<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
+<div class="w-full h-8 bg-stone-200"></div>
+<span class="font-mono text-[9px] font-bold uppercase truncate">OFF_WHITE</span>
+</div>
+</label>
+<label class="group relative cursor-pointer">
+<input class="peer sr-only" type="checkbox"/>
+<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
+<div class="w-full h-8 bg-blue-700"></div>
+<span class="font-mono text-[9px] font-bold uppercase truncate">COBALT_IND</span>
+</div>
+</label>
+<label class="group relative cursor-pointer">
+<input class="peer sr-only" type="checkbox"/>
+<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
+<div class="w-full h-8 bg-teal-900"></div>
+<span class="font-mono text-[9px] font-bold uppercase truncate">PETROL_BL</span>
+</div>
+</label>
+<label class="group relative cursor-pointer">
+<input class="peer sr-only" type="checkbox"/>
+<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
+<div class="w-full h-8 bg-neutral-600"></div>
+<span class="font-mono text-[9px] font-bold uppercase truncate">ASPHALT_LT</span>
+</div>
+</label>
+<label class="group relative cursor-pointer">
+<input class="peer sr-only" type="checkbox"/>
+<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
+<div class="w-full h-8 bg-slate-400"></div>
+<span class="font-mono text-[9px] font-bold uppercase truncate">SILVER_HST</span>
+</div>
+</label>
+</div>
+</div>
+<div class="relative border-2 border-dashed border-black p-12 bg-surface-container-low text-center group cursor-pointer">
+<span class="material-symbols-outlined text-5xl mb-4 text-black">upload_file</span>
+<p class="font-headline font-bold uppercase text-lg">Select Logo_Manifest // Drag &amp; Drop</p>
+<p class="font-mono text-[10px] text-secondary mt-2 uppercase tracking-widest">ACCEPTED_FORMATS: .SVG .AI .DXF .PDF</p>
+<input class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" type="file"/>
+</div>
+</div>
+</div>
+<!-- Submission Action -->
+<button class="w-full bg-black text-white p-6 font-headline font-black text-3xl md:text-5xl uppercase tracking-tighter transition-all hover:bg-primary-container hover:text-black border-4 border-black brutal-shadow group flex items-center justify-between" type="submit">
+<span class="">SUBMIT_REQUEST // SEND_EMAIL</span>
+<span class="material-symbols-outlined text-4xl group-hover:translate-x-4 transition-transform">arrow_forward</span>
+</button>
+</form>
+</div>
+<!-- Contextual Sidebar -->
+<div class="lg:col-span-4 space-y-8">
+<div class="bg-primary-container border-4 border-black p-6 brutal-shadow">
+<h4 class="font-headline font-black text-2xl uppercase mb-4 leading-none">PRODUCTION_METRICS</h4>
+<ul class="font-mono text-xs space-y-4">
+<li class="flex justify-between border-b-2 border-black pb-2">
+<span class="">MANUFACTURING_TIME:</span>
+<span class="font-bold">TYPICALLY_72_HOURS</span>
+</li>
+<li class="flex justify-between border-b-2 border-black pb-2">
+<span class="">SHIP_TIME:</span>
+<span class="font-bold">UNDER_ONE_WEEK</span>
+</li>
+<li class="flex justify-between border-b-2 border-black pb-2">
+<span class="">MATERIAL_TYPE:</span>
+<span class="font-bold">VIRGIN_PLA</span>
+</li>
+<li class="flex justify-between border-b-2 border-black pb-2">
+<span class="">ORIGIN:</span>
+<span class="font-bold">USA</span>
+</li>
+</ul>
+<div class="mt-8 flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-mono text-[10px] tracking-widest uppercase font-bold">MNGD // USA_SITE_01</span>
+</div>
+</div>
+<div class="border-4 border-black p-6 bg-white overflow-hidden relative">
+<img alt="Macro shot of industrial keychain texture showing precision machining and high-grade nylon filament" class="w-full h-64 object-cover mb-4" data-alt="Macro shot of industrial keychain texture showing precision machining and high-grade nylon filament" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkys4Ah2q0vZW8BZJTTSl07SyentbIqqy8VtGBGV_VPeg4mnc3PfvBeqmHsdgLuTRWVJ1S2KPAUPT_lxb1K0Q_Xez1kaIvv88DFsacVIUt4Jjwshqh4LsDvb9VCZvAlcyctMkJ3WxWdzXox25c4kgSCDXacbNwX1_V1kzQd5_eLdTsw-nXQ7ERMG3FcsfXFyhbw0Z2TaUecWJOc40lGuUlK5imgVtJH6WYXTjIfSIWlQPevZ-cISnJhKAroXEPvYw8qmzpAE7k7PQj"/>
+<div class="absolute top-10 right-10 bg-tertiary text-white px-3 py-1 font-mono text-[10px] rotate-12 font-bold border-2 border-black">
+                        LATEST_BATCH
+                    </div>
+<p class="font-mono text-[10px] uppercase text-secondary">Preview: RUGGED_HOOK_04 // CYAN_FINISH</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-stone-950 w-full border-t-4 border-black py-12 px-8 flex flex-col md:flex-row justify-between items-end">
+<div class="flex flex-col gap-4 mb-8 md:mb-0">
+<div class="text-lg font-black text-stone-100 font-headline uppercase tracking-tighter">TAGD USA // RUGGED_SYSTEMS_DIV</div>
+<p class="text-stone-600 font-mono text-[10px] tracking-widest uppercase">©2024 TAGD USA // RUGGED_SYSTEMS_DIV</p>
+</div>
+<div class="flex flex-wrap gap-8 font-mono text-[10px] tracking-widest uppercase">
+<a class="text-stone-600 hover:text-red-600 transition-colors" href="#">Privacy</a>
+<a class="text-stone-600 hover:text-red-600 transition-colors" href="#">Terms</a>
+<a class="text-stone-600 hover:text-red-600 transition-colors" href="#">Safety Protocols</a>
+<a class="text-stone-600 hover:text-red-600 transition-colors underline decoration-red-600 text-stone-100" href="#">Contact Site_01</a>
+</div>
+</footer>
+<script>
+    // Max 4 color selection constraint
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach(cb => {
+        cb.addEventListener('change', () => {
+            const checked = document.querySelectorAll('input[type="checkbox"]:checked');
+            if (checked.length > 4) {
+                cb.checked = false;
+            }
+        });
+    });
+</script>
+</body></html>
