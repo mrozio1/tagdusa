@@ -139,186 +139,56 @@
 <input class="w-48 border-2 border-black p-4 focus:ring-0 focus:border-primary-container text-2xl font-headline font-black" placeholder="0000" type="number"/>
 </div>
 <div>
-<h3 class="font-headline font-black text-xl uppercase tracking-tighter mb-4 flex items-center gap-2">
-<span class="w-3 h-3 bg-tertiary"></span> COLOR SELECTION <span class="text-secondary font-mono text-xs">(MAX 4)</span>
-</h3>
-<div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
-<!-- 24 Color Blocks -->
-<label class="group relative cursor-pointer">
-<input class="peer sr-only" type="checkbox"/>
-<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
-<div class="w-full h-8 bg-black"></div>
-<span class="font-mono text-[9px] font-bold uppercase truncate">OBSIDIAN_01</span>
+<h3 class="font-headline font-black text-xl uppercase tracking-tighter mb-6 flex items-center gap-2">
+<span class="w-3 h-3 bg-tertiary"></span> COLOR CONFIGURATION
+                            </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Primary Color -->
+<div class="relative border-2 border-black p-6 bg-white">
+<label class="absolute -top-3 left-4 bg-white px-2 font-mono text-[10px] font-bold uppercase tracking-widest">Primary Color</label>
+<select class="w-full border-2 border-black p-4 bg-surface appearance-none focus:ring-0 focus:border-primary-container font-headline font-bold uppercase tracking-tight text-lg"><option value="">Select Option</option>
+<option>⬛ Obsidian_01</option><option>🟦 Cyan_Pulse</option><option>⬜ Ind_Grey</option><option>🟥 Heritage_Red</option><option>⬛ Gunmetal_60</option>
+<option>🟩 Tactical_Grn</option><option>🟦 Navy_Steel</option><option>⬜ Alum_Alloy</option><option>🟧 Safety_Org</option><option>⬛ Void_Black</option>
+<option>🟦 Deep_Hull</option><option>🟩 Olive_Drab</option><option>🟨 Caution_Ylw</option><option>⬛ Carbon_Core</option><option>⬜ Concrete_V1</option>
+<option>🟦 Maritime_Bl</option><option>🟥 Oxide_Red</option><option>🟫 Iron_Oxide</option><option>🟩 Forest_Ops</option><option>⬜ Off_White</option></select>
 </div>
-</label>
-<label class="group relative cursor-pointer">
-<input checked="" class="peer sr-only" type="checkbox"/>
-<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
-<div class="w-full h-8 bg-cyan-400"></div>
-<span class="font-mono text-[9px] font-bold uppercase truncate">CYAN_PULSE</span>
+<!-- Secondary Color -->
+<div class="relative border-2 border-black p-6 bg-white">
+<label class="absolute -top-3 left-4 bg-white px-2 font-mono text-[10px] font-bold uppercase tracking-widest">Secondary Color</label>
+<select class="w-full border-2 border-black p-4 bg-surface appearance-none focus:ring-0 focus:border-primary-container font-headline font-bold uppercase tracking-tight text-lg"><option value="">Select Option</option>
+<option>⬛ Obsidian_01</option><option>🟦 Cyan_Pulse</option><option>⬜ Ind_Grey</option><option>🟥 Heritage_Red</option><option>⬛ Gunmetal_60</option>
+<option>🟩 Tactical_Grn</option><option>🟦 Navy_Steel</option><option>⬜ Alum_Alloy</option><option>🟧 Safety_Org</option><option>⬛ Void_Black</option>
+<option>🟦 Deep_Hull</option><option>🟩 Olive_Drab</option><option>🟨 Caution_Ylw</option><option>⬛ Carbon_Core</option><option>⬜ Concrete_V1</option>
+<option>🟦 Maritime_Bl</option><option>🟥 Oxide_Red</option><option>🟫 Iron_Oxide</option><option>🟩 Forest_Ops</option><option>⬜ Off_White</option></select>
 </div>
-</label>
-<label class="group relative cursor-pointer">
-<input class="peer sr-only" type="checkbox"/>
-<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
-<div class="w-full h-8 bg-stone-300"></div>
-<span class="font-mono text-[9px] font-bold uppercase truncate">IND_GREY</span>
+<!-- Accent 1 Color -->
+<div class="relative border-2 border-black p-6 bg-white">
+<label class="absolute -top-3 left-4 bg-white px-2 font-mono text-[10px] font-bold uppercase tracking-widest">Accent 1</label>
+<select class="w-full border-2 border-black p-4 bg-surface appearance-none focus:ring-0 focus:border-primary-container font-headline font-bold uppercase tracking-tight text-lg"><option value="">Select Option</option>
+<option>⬛ Obsidian_01</option><option>🟦 Cyan_Pulse</option><option>⬜ Ind_Grey</option><option>🟥 Heritage_Red</option><option>⬛ Gunmetal_60</option>
+<option>🟩 Tactical_Grn</option><option>🟦 Navy_Steel</option><option>⬜ Alum_Alloy</option><option>🟧 Safety_Org</option><option>⬛ Void_Black</option>
+<option>🟦 Deep_Hull</option><option>🟩 Olive_Drab</option><option>🟨 Caution_Ylw</option><option>⬛ Carbon_Core</option><option>⬜ Concrete_V1</option>
+<option>🟦 Maritime_Bl</option><option>🟥 Oxide_Red</option><option>🟫 Iron_Oxide</option><option>🟩 Forest_Ops</option><option>⬜ Off_White</option></select>
 </div>
-</label>
-<label class="group relative cursor-pointer">
-<input class="peer sr-only" type="checkbox"/>
-<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
-<div class="w-full h-8 bg-tertiary"></div>
-<span class="font-mono text-[9px] font-bold uppercase truncate">HERITAGE_RED</span>
+<!-- Accent 2 Color -->
+<div class="relative border-2 border-black p-6 bg-white">
+<label class="absolute -top-3 left-4 bg-white px-2 font-mono text-[10px] font-bold uppercase tracking-widest">Accent 2</label>
+<select class="w-full border-2 border-black p-4 bg-surface appearance-none focus:ring-0 focus:border-primary-container font-headline font-bold uppercase tracking-tight text-lg"><option value="">Select Option</option>
+<option>⬛ Obsidian_01</option><option>🟦 Cyan_Pulse</option><option>⬜ Ind_Grey</option><option>🟥 Heritage_Red</option><option>⬛ Gunmetal_60</option>
+<option>🟩 Tactical_Grn</option><option>🟦 Navy_Steel</option><option>⬜ Alum_Alloy</option><option>🟧 Safety_Org</option><option>⬛ Void_Black</option>
+<option>🟦 Deep_Hull</option><option>🟩 Olive_Drab</option><option>🟨 Caution_Ylw</option><option>⬛ Carbon_Core</option><option>⬜ Concrete_V1</option>
+<option>🟦 Maritime_Bl</option><option>🟥 Oxide_Red</option><option>🟫 Iron_Oxide</option><option>🟩 Forest_Ops</option><option>⬜ Off_White</option></select>
 </div>
-</label>
-<label class="group relative cursor-pointer">
-<input class="peer sr-only" type="checkbox"/>
-<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
-<div class="w-full h-8 bg-stone-700"></div>
-<span class="font-mono text-[9px] font-bold uppercase truncate">GUNMETAL_60</span>
-</div>
-</label>
-<label class="group relative cursor-pointer">
-<input class="peer sr-only" type="checkbox"/>
-<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
-<div class="w-full h-8 bg-emerald-900"></div>
-<span class="font-mono text-[9px] font-bold uppercase truncate">TACTICAL_GRN</span>
-</div>
-</label>
-<label class="group relative cursor-pointer">
-<input class="peer sr-only" type="checkbox"/>
-<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
-<div class="w-full h-8 bg-slate-500"></div>
-<span class="font-mono text-[9px] font-bold uppercase truncate">NAVY_STEEL</span>
-</div>
-</label>
-<label class="group relative cursor-pointer">
-<input class="peer sr-only" type="checkbox"/>
-<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
-<div class="w-full h-8 bg-zinc-400"></div>
-<span class="font-mono text-[9px] font-bold uppercase truncate">ALUM_ALLOY</span>
-</div>
-</label>
-<label class="group relative cursor-pointer">
-<input class="peer sr-only" type="checkbox"/>
-<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
-<div class="w-full h-8 bg-orange-600"></div>
-<span class="font-mono text-[9px] font-bold uppercase truncate">SAFETY_ORG</span>
-</div>
-</label>
-<label class="group relative cursor-pointer">
-<input class="peer sr-only" type="checkbox"/>
-<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
-<div class="w-full h-8 bg-stone-900"></div>
-<span class="font-mono text-[9px] font-bold uppercase truncate">VOID_BLACK</span>
-</div>
-</label>
-<label class="group relative cursor-pointer">
-<input class="peer sr-only" type="checkbox"/>
-<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
-<div class="w-full h-8 bg-blue-900"></div>
-<span class="font-mono text-[9px] font-bold uppercase truncate">DEEP_HULL</span>
-</div>
-</label>
-<label class="group relative cursor-pointer">
-<input class="peer sr-only" type="checkbox"/>
-<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
-<div class="w-full h-8 bg-lime-950"></div>
-<span class="font-mono text-[9px] font-bold uppercase truncate">OLIVE_DRAB</span>
-</div>
-</label>
-<label class="group relative cursor-pointer">
-<input class="peer sr-only" type="checkbox"/>
-<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
-<div class="w-full h-8 bg-yellow-500"></div>
-<span class="font-mono text-[9px] font-bold uppercase truncate">CAUTION_YLW</span>
-</div>
-</label>
-<label class="group relative cursor-pointer">
-<input class="peer sr-only" type="checkbox"/>
-<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
-<div class="w-full h-8 bg-slate-800"></div>
-<span class="font-mono text-[9px] font-bold uppercase truncate">CARBON_CORE</span>
-</div>
-</label>
-<label class="group relative cursor-pointer">
-<input class="peer sr-only" type="checkbox"/>
-<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
-<div class="w-full h-8 bg-stone-500"></div>
-<span class="font-mono text-[9px] font-bold uppercase truncate">CONCRETE_V1</span>
-</div>
-</label>
-<label class="group relative cursor-pointer">
-<input class="peer sr-only" type="checkbox"/>
-<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
-<div class="w-full h-8 bg-sky-900"></div>
-<span class="font-mono text-[9px] font-bold uppercase truncate">MARITIME_BL</span>
-</div>
-</label>
-<label class="group relative cursor-pointer">
-<input class="peer sr-only" type="checkbox"/>
-<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
-<div class="w-full h-8 bg-red-900"></div>
-<span class="font-mono text-[9px] font-bold uppercase truncate">OXIDE_RED</span>
-</div>
-</label>
-<label class="group relative cursor-pointer">
-<input class="peer sr-only" type="checkbox"/>
-<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
-<div class="w-full h-8 bg-zinc-800"></div>
-<span class="font-mono text-[9px] font-bold uppercase truncate">IRON_OXIDE</span>
-</div>
-</label>
-<label class="group relative cursor-pointer">
-<input class="peer sr-only" type="checkbox"/>
-<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
-<div class="w-full h-8 bg-emerald-700"></div>
-<span class="font-mono text-[9px] font-bold uppercase truncate">FOREST_OPS</span>
-</div>
-</label>
-<label class="group relative cursor-pointer">
-<input class="peer sr-only" type="checkbox"/>
-<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
-<div class="w-full h-8 bg-stone-200"></div>
-<span class="font-mono text-[9px] font-bold uppercase truncate">OFF_WHITE</span>
-</div>
-</label>
-<label class="group relative cursor-pointer">
-<input class="peer sr-only" type="checkbox"/>
-<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
-<div class="w-full h-8 bg-blue-700"></div>
-<span class="font-mono text-[9px] font-bold uppercase truncate">COBALT_IND</span>
-</div>
-</label>
-<label class="group relative cursor-pointer">
-<input class="peer sr-only" type="checkbox"/>
-<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
-<div class="w-full h-8 bg-teal-900"></div>
-<span class="font-mono text-[9px] font-bold uppercase truncate">PETROL_BL</span>
-</div>
-</label>
-<label class="group relative cursor-pointer">
-<input class="peer sr-only" type="checkbox"/>
-<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
-<div class="w-full h-8 bg-neutral-600"></div>
-<span class="font-mono text-[9px] font-bold uppercase truncate">ASPHALT_LT</span>
-</div>
-</label>
-<label class="group relative cursor-pointer">
-<input class="peer sr-only" type="checkbox"/>
-<div class="border-2 border-black p-2 transition-all peer-checked:bg-primary-container peer-checked:border-black flex flex-col gap-2">
-<div class="w-full h-8 bg-slate-400"></div>
-<span class="font-mono text-[9px] font-bold uppercase truncate">SILVER_HST</span>
-</div>
-</label>
 </div>
 </div>
 <div class="relative border-2 border-dashed border-black p-12 bg-surface-container-low text-center group cursor-pointer">
 <span class="material-symbols-outlined text-5xl mb-4 text-black">upload_file</span>
 <p class="font-headline font-bold uppercase text-lg">Select Logo_Manifest // Drag &amp; Drop</p>
-<p class="font-mono text-[10px] text-secondary mt-2 uppercase tracking-widest">ACCEPTED_FORMATS: .png .web .jpg .pdf</p>
+<p class="font-mono text-[10px] text-secondary mt-2 uppercase tracking-widest">ACCEPTED_FORMATS: .SVG .AI .DXF .PDF</p>
 <input class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" type="file"/>
+</div><div class="relative mt-10">
+<label class="absolute -top-3 left-4 bg-white px-2 font-mono text-xs font-bold uppercase tracking-widest">ADDITIONAL_SPECIFICATIONS // COMMENTS</label>
+<textarea class="w-full border-2 border-black p-4 focus:ring-0 focus:border-primary-container text-lg font-headline font-bold uppercase min-h-[150px] bg-white" placeholder="_ENTER_TEXT_HERE"></textarea>
 </div>
 </div>
 </div>
