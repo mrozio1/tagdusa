@@ -1,119 +1,96 @@
 <!DOCTYPE html>
-
 <html class="light" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&amp;family=Inter:wght@400;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700;900&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "surface-container-highest": "#e2e2e2",
-                    "surface": "#f9f9f9",
-                    "on-error": "#ffffff",
-                    "on-primary": "#ffffff",
-                    "on-error-container": "#93000a",
-                    "inverse-primary": "#7ad0ff",
-                    "background": "#f9f9f9",
-                    "surface-dim": "#dadada",
-                    "secondary-container": "#e2e2e2",
-                    "secondary": "#5e5e5e",
-                    "on-primary-fixed": "#001e2c",
-                    "primary-fixed": "#c3e8ff",
-                    "surface-container-lowest": "#ffffff",
-                    "primary-fixed-dim": "#7ad0ff",
-                    "surface-container-high": "#e8e8e8",
-                    "on-surface-variant": "#3d4850",
-                    "secondary-fixed": "#e2e2e2",
-                    "on-secondary-fixed": "#1b1b1b",
-                    "on-secondary": "#ffffff",
-                    "on-tertiary": "#ffffff",
-                    "surface-variant": "#e2e2e2",
-                    "inverse-surface": "#2f3131",
-                    "on-surface": "#1a1c1c",
-                    "on-secondary-container": "#646464",
-                    "tertiary-fixed-dim": "#ffb3ac",
-                    "on-tertiary-fixed-variant": "#930010",
-                    "tertiary-container": "#ff958c",
-                    "on-tertiary-container": "#8f000f",
-                    "secondary-fixed-dim": "#c6c6c6",
-                    "outline": "#6d7981",
-                    "primary-container": "#00bfff",
-                    "tertiary": "#ba1a20",
-                    "surface-container-low": "#f3f3f3",
-                    "on-primary-container": "#004a65",
-                    "on-background": "#1a1c1c",
-                    "tertiary-fixed": "#ffdad6",
-                    "surface-bright": "#f9f9f9",
-                    "primary": "#00668a",
-                    "surface-tint": "#00668a",
-                    "error": "#ba1a1a",
-                    "inverse-on-surface": "#f1f1f1",
-                    "error-container": "#ffdad6",
-                    "on-tertiary-fixed": "#410003",
-                    "on-primary-fixed-variant": "#004c69",
-                    "on-secondary-fixed-variant": "#474747",
-                    "surface-container": "#eeeeee",
-                    "outline-variant": "#bcc8d1"
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00BFFF",
+                        "primary-container": "#00BFFF",
+                        "on-primary-container": "#002d63",
+                        "surface": "#f9f9f9",
+                        "on-surface": "#1a1c1c",
+                        "tertiary": "#ba1a20",
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0px",
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                    }
+                },
             },
-            "borderRadius": {
-                    "DEFAULT": "0px",
-                    "lg": "0px",
-                    "xl": "0px",
-                    "full": "9999px"
-            },
-            "fontFamily": {
-                    "headline": ["Space Grotesk"],
-                    "body": ["Inter"],
-                    "label": ["Space Grotesk"]
-            }
-          },
-        },
-      }
+        }
     </script>
-<style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+<style type="text/tailwindcss">
+        @layer base {
+            body {
+                @apply bg-surface text-on-surface font-body overflow-x-hidden;
+            }
         }
-        .slanted-bg {
-            background: 
-                linear-gradient(115deg, transparent 40%, rgba(0, 191, 255, 0.1) 40%, rgba(0, 191, 255, 0.1) 45%, transparent 45%),
-                linear-gradient(115deg, transparent 55%, rgba(0, 191, 255, 0.15) 55%, rgba(0, 191, 255, 0.15) 70%, transparent 70%),
-                linear-gradient(115deg, transparent 80%, rgba(0, 191, 255, 0.05) 80%, rgba(0, 191, 255, 0.05) 95%, transparent 95%);
+        @layer components {
+            .brutalist-border {
+                @apply border-4 border-black;
+            }
+            .brutalist-shadow {
+                box-shadow: 12px 12px 0px 0px rgba(0,0,0,1);
+            }
+            .brutalist-shadow-sm {
+                box-shadow: 6px 6px 0px 0px rgba(0,0,0,1);
+            }
+            .skewed-bg {
+                clip-path: polygon(0 0, 100% 5%, 100% 100%, 0 95%);
+            }
+            .circuit-pattern {
+                background-image: radial-gradient(circle, #000000 1px, transparent 1px);
+                background-size: 30px 30px;
+                opacity: 0.05;
+            }
+            .headline-refined {
+                @apply font-headline font-black uppercase tracking-tighter leading-[0.85];
+                letter-spacing: -0.05em;
+            }
+            .body-refined {
+                @apply font-body font-normal tracking-wide leading-relaxed;
+            }
+            .parallax-layer {
+                transition: transform 0.6s cubic-bezier(0.33, 1, 0.68, 1);
+            }
+            .parallax-layer:hover {
+                transform: translateY(-10px) translateX(-5px);
+            }
         }
-        .impact-text {
-            letter-spacing: -0.05em;
-            line-height: 0.9;
+        .animate-marquee {
+            animation: marquee 30s linear infinite;
         }
-        .hard-shadow {
-            box-shadow: 8px 8px 0px 0px #000000;
-        }
-        .hard-shadow-blue {
-            box-shadow: 8px 8px 0px 0px #00BFFF;
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
     </style>
 </head>
-<body class="bg-background font-body text-on-background selection:bg-primary-container selection:text-black">
-<!-- TopAppBar -->
-<nav class="bg-white dark:bg-black flex justify-between items-center w-full px-6 h-16 docked full-width top-0 border-b-2 border-black dark:border-[#00BFFF] sticky z-50">
-<div class="flex items-center gap-4">
-<span class="text-2xl font-black tracking-tighter text-black dark:text-white bg-[#00BFFF] px-2">PATRIOT_MFG</span>
+<body class="bg-surface">
+<header class="bg-white border-b-4 border-black sticky top-0 z-[100] px-6 py-4 flex justify-between items-center brutalist-shadow-sm">
+<div class="flex items-center gap-6">
+<img alt="TAGD USA Logo" class="h-12 w-auto brightness-0" src="/assets/logo.PNG"/>
 </div>
-<div class="hidden md:flex gap-8">
-<a class="font-['Space_Grotesk'] uppercase tracking-tighter font-bold text-black dark:text-white hover:bg-[#00BFFF] hover:text-black transition-colors duration-150 px-2 py-1" href="#">MISSION</a>
-<a class="font-['Space_Grotesk'] uppercase tracking-tighter font-bold text-[#00BFFF] border-b-4 border-[#00BFFF] px-2 py-1" href="#">CREATOR</a>
-<a class="font-['Space_Grotesk'] uppercase tracking-tighter font-bold text-black dark:text-white hover:bg-[#00BFFF] hover:text-black transition-colors duration-150 px-2 py-1" href="#">HISTORY</a>
-<a class="font-['Space_Grotesk'] uppercase tracking-tighter font-bold text-black dark:text-white hover:bg-[#00BFFF] hover:text-black transition-colors duration-150 px-2 py-1" href="#">SITE_01</a>
-</div>
-<button class="font-['Space_Grotesk'] uppercase tracking-tighter font-bold bg-[#00BFFF] text-black px-4 py-1 border-2 border-black hover:bg-black hover:text-[#00BFFF] transition-colors duration-150">
-            CONTACT
-        </button>
+<nav class="hidden md:flex gap-4 font-headline font-black uppercase tracking-tight text-sm">
+<a class="bg-primary px-4 py-2 hover:translate-y-[-2px] transition-transform border-2 border-black" href="#">HOME</a>
+<a class="px-4 py-2 hover:bg-zinc-100 transition-colors" href="products.html">PRODUCTS</a>
+<a class="px-4 py-2 hover:bg-zinc-100 transition-colors" href="about.html">ABOUT</a>
+<a class="px-4 py-2 hover:bg-zinc-100 transition-colors" href="quote.html">QUOTE</a>
 </nav>
+<div class="flex items-center">
+<button class="material-symbols-outlined text-3xl font-bold">menu</button>
+</div>
+</header>
 <main class="relative overflow-hidden slanted-bg min-h-screen">
 <!-- Hero Section: The Creator's Manifesto -->
 <section class="relative pt-24 pb-12 px-6 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
@@ -266,21 +243,54 @@
 </section>
 </main>
 <!-- Footer -->
-<footer class="bg-black text-[#00BFFF] flex flex-col md:flex-row justify-between items-center px-8 py-12 w-full docked full-width bottom border-t-4 border-[#ba1a20]">
-<div class="flex flex-col gap-2 mb-8 md:mb-0">
-<div class="flex items-center gap-2">
-<span class="text-tertiary text-xl font-bold">★</span>
-<span class="font-mono uppercase tracking-widest text-white text-xs">MNGD // USA_SITE_01</span>
+<section class="bg-primary py-16 overflow-hidden border-b-8 border-black">
+<div class="flex whitespace-nowrap gap-12 items-center animate-marquee">
+<span class="headline-refined text-7xl text-black/20 italic">TAGD USA // BUILT FOR SCALE // MODERN INTERFACE // TAGD USA // BUILT FOR SCALE // MODERN INTERFACE // </span>
+<span class="headline-refined text-7xl text-black/20 italic">TAGD USA // BUILT FOR SCALE // MODERN INTERFACE // TAGD USA // BUILT FOR SCALE // MODERN INTERFACE // </span>
 </div>
-<p class="font-mono uppercase tracking-widest text-[10px] text-gray-500">©2024 PATRIOT_MFG // MNGD // USA_SITE_01</p>
+</section>
+</main>
+<footer class="bg-zinc-900 text-white py-20 px-6 md:px-12 border-t-4 border-black">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-16">
+<div class="space-y-6">
+<div class="flex items-center gap-4">
+<span class="text-tertiary text-3xl">★</span>
+<span class="font-headline font-black text-2xl tracking-widest uppercase">TAGD USA</span>
 </div>
-<div class="flex gap-12 font-mono uppercase tracking-widest text-[10px]">
-<a class="text-gray-500 hover:text-[#00BFFF] transition-colors" href="#">PRIVACY</a>
-<a class="text-gray-500 hover:text-[#00BFFF] transition-colors" href="#">TERMS</a>
-<a class="text-gray-500 hover:text-[#00BFFF] transition-colors" href="#">RESOURCES</a>
+<p class="body-refined opacity-60 text-sm max-w-xs uppercase tracking-widest">
+                Hardware for the digital era. Built to last, engineered to connect.
+            </p>
+<p class="font-mono text-xs opacity-40 uppercase tracking-widest mt-10">©2026 TAGD USA // OHULLO</p>
 </div>
-<div class="mt-8 md:mt-0">
-<span class="text-[#00BFFF] font-bold text-2xl tracking-tighter">TAGD_USA</span>
+<div class="grid grid-cols-2 gap-20">
+<div class="space-y-4">
+<h4 class="font-headline font-bold uppercase tracking-widest text-primary text-sm">NAVIGATE</h4>
+<nav class="flex flex-col gap-3 font-mono text-xs tracking-[0.2em] uppercase opacity-70">
+<a class="hover:text-primary hover:opacity-100 transition-all" href="#">Home</a>
+<a class="hover:text-primary hover:opacity-100 transition-all" href="#">Products</a>
+<a class="hover:text-primary hover:opacity-100 transition-all" href="#">Quote</a>
+</nav>
+</div>
+<div class="space-y-4">
+<h4 class="font-headline font-bold uppercase tracking-widest text-primary text-sm">LEGAL</h4>
+<nav class="flex flex-col gap-3 font-mono text-xs tracking-[0.2em] uppercase opacity-70">
+<a class="hover:text-primary hover:opacity-100 transition-all" href="#">Terms</a>
+<a class="hover:text-primary hover:opacity-100 transition-all" href="#">Privacy</a>
+<a class="hover:text-primary hover:opacity-100 transition-all" href="#">Origin</a>
+</nav>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-14 h-14 brutalist-border border-white flex items-center justify-center hover:bg-primary hover:text-black transition-all cursor-pointer">
+<span class="material-symbols-outlined">share</span>
+</div>
+<div class="w-14 h-14 brutalist-border border-white flex items-center justify-center hover:bg-primary hover:text-black transition-all cursor-pointer">
+<span class="material-symbols-outlined">mail</span>
+</div>
+</div>
 </div>
 </footer>
+<button class="fixed bottom-8 right-8 z-[90] bg-tertiary text-black w-20 h-20 brutalist-border brutalist-shadow flex items-center justify-center hover:translate-x-1 hover:translate-y-1 hover:shadow-sm transition-all">
+<span class="material-symbols-outlined text-4xl font-bold">shopping_cart</span>
+</button>
 </body></html>
