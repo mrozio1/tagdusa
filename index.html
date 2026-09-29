@@ -2,33 +2,15 @@
 <html class="light" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TAGD USA | NFC Keychains & Digital Business Cards</title>
+<meta name="description" content="Durable 3D printed NFC keychains, made in Texas. Share your links and contact info with one tap."/>
+<link rel="icon" href="assets/logo.PNG"/>
+<link rel="stylesheet" href="assets/site.css"/>
+
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700;900&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#00BFFF",
-                        "primary-container": "#00BFFF",
-                        "on-primary-container": "#002d63",
-                        "surface": "#f9f9f9",
-                        "on-surface": "#1a1c1c",
-                        "tertiary": "#ba1a20",
-                    },
-                    borderRadius: {
-                        "DEFAULT": "0px",
-                    },
-                    fontFamily: {
-                        "headline": ["Space Grotesk", "sans-serif"],
-                        "body": ["Inter", "sans-serif"],
-                    }
-                },
-            },
-        }
-    </script>
+<script src="assets/tailwind-config.js"></script>
 <style type="text/tailwindcss">
         @layer base {
             body {
@@ -77,20 +59,7 @@
     </style>
 </head>
 <body class="bg-surface">
-<header class="bg-white border-b-4 border-black sticky top-0 z-[100] px-6 py-4 flex justify-between items-center brutalist-shadow-sm">
-<div class="flex items-center gap-6">
-<img alt="TAGD USA Logo" class="h-12 w-auto brightness-0" src="/assets/logo.PNG"/>
-</div>
-<nav class="hidden md:flex gap-4 font-headline font-black uppercase tracking-tight text-sm">
-<a class="bg-primary px-4 py-2 hover:translate-y-[-2px] transition-transform border-2 border-black" href="#">HOME</a>
-<a class="px-4 py-2 hover:bg-zinc-100 transition-colors" href="products.html">PRODUCTS</a>
-<a class="px-4 py-2 hover:bg-zinc-100 transition-colors" href="about.html">ABOUT</a>
-<a class="px-4 py-2 hover:bg-zinc-100 transition-colors" href="quote.html">QUOTE</a>
-</nav>
-<div class="flex items-center">
-<button class="material-symbols-outlined text-3xl font-bold">menu</button>
-</div>
-</header>
+<div id="site-header"></div>
 <main>
 <section class="relative min-h-[921px] flex items-center overflow-hidden bg-white border-b-8 border-black">
 <div class="absolute inset-0 circuit-pattern z-0"></div>
@@ -124,9 +93,7 @@
 <p class="body-refined text-on-primary-container text-lg mb-10">
                             High-performance NFC chipped hardware for professionals who demand efficiency. Eliminate paper waste. Carry your identity in a durable, industrial-grade vessel.
                         </p>
-<href="/quote.html"><button class="bg-white text-black brutalist-border px-10 py-5 font-headline font-black text-xl uppercase tracking-widest hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all brutalist-shadow-sm" >
-                           GET A QUOTE
-                        </button></href>
+<a class="inline-block bg-white text-black brutalist-border px-10 py-5 font-headline font-black text-xl uppercase tracking-widest hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all brutalist-shadow-sm" href="quote.html">GET A QUOTE</a>
 </div>
 <div class="parallax-layer relative group">
 <div class="absolute -inset-4 bg-primary/20 -skew-x-3 group-hover:skew-x-0 transition-transform duration-500"></div>
@@ -209,9 +176,7 @@
 <span class="font-headline font-bold text-3xl uppercase italic tracking-tighter">100% WATERPROOF</span>
 </div>
 </div>
-<button class="w-full bg-primary text-black brutalist-border p-8 headline-refined text-3xl brutalist-shadow hover:translate-x-2 hover:translate-y-2 hover:shadow-none transition-all" href="products.html">
-                    SHOP THE COLLECTION
-                </button>
+<a class="block text-center w-full bg-primary text-black brutalist-border p-8 headline-refined text-3xl brutalist-shadow hover:translate-x-2 hover:translate-y-2 hover:shadow-none transition-all" href="products.html">SHOP THE COLLECTION</a>
 </div>
 </div>
 </section>
@@ -222,48 +187,7 @@
 </div>
 </section>
 </main>
-<footer class="bg-zinc-900 text-white py-20 px-6 md:px-12 border-t-4 border-black">
-<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-16">
-<div class="space-y-6">
-<div class="flex items-center gap-4">
-<span class="text-tertiary text-3xl">★</span>
-<span class="font-headline font-black text-2xl tracking-widest uppercase">TAGD USA</span>
-</div>
-<p class="body-refined opacity-60 text-sm max-w-xs uppercase tracking-widest">
-                Hardware for the digital era. Built to last, engineered to connect.
-            </p>
-<p class="font-mono text-xs opacity-40 uppercase tracking-widest mt-10">©2026 TAGD USA // OHULLO</p>
-</div>
-<div class="grid grid-cols-2 gap-20">
-<div class="space-y-4">
-<h4 class="font-headline font-bold uppercase tracking-widest text-primary text-sm">NAVIGATE</h4>
-<nav class="flex flex-col gap-3 font-mono text-xs tracking-[0.2em] uppercase opacity-70">
-<a class="hover:text-primary hover:opacity-100 transition-all" href="#">Home</a>
-<a class="hover:text-primary hover:opacity-100 transition-all" href="#">Products</a>
-<a class="hover:text-primary hover:opacity-100 transition-all" href="#">Quote</a>
-</nav>
-</div>
-<div class="space-y-4">
-<h4 class="font-headline font-bold uppercase tracking-widest text-primary text-sm">LEGAL</h4>
-<nav class="flex flex-col gap-3 font-mono text-xs tracking-[0.2em] uppercase opacity-70">
-<a class="hover:text-primary hover:opacity-100 transition-all" href="#">Terms</a>
-<a class="hover:text-primary hover:opacity-100 transition-all" href="#">Privacy</a>
-<a class="hover:text-primary hover:opacity-100 transition-all" href="#">Origin</a>
-</nav>
-</div>
-</div>
-<div class="flex gap-4">
-<div class="w-14 h-14 brutalist-border border-white flex items-center justify-center hover:bg-primary hover:text-black transition-all cursor-pointer">
-<span class="material-symbols-outlined">share</span>
-</div>
-<div class="w-14 h-14 brutalist-border border-white flex items-center justify-center hover:bg-primary hover:text-black transition-all cursor-pointer">
-<span class="material-symbols-outlined">mail</span>
-</div>
-</div>
-</div>
-</footer>
-<button class="fixed bottom-8 right-8 z-[90] bg-tertiary text-black w-20 h-20 brutalist-border brutalist-shadow flex items-center justify-center hover:translate-x-1 hover:translate-y-1 hover:shadow-sm transition-all">
-<span class="material-symbols-outlined text-4xl font-bold">shopping_cart</span>
-</button>
-
+<div id="site-footer"></div>
+<script src="assets/store-config.js"></script>
+<script src="assets/site.js"></script>
 </body></html>
