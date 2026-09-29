@@ -7,6 +7,15 @@ window.TAGD_STORE = {
     freeShippingOver: 50.00,   // subtotal that unlocks free shipping (set to null to disable)
     taxRate: 0.0825,           // Texas combined state + local (estimate)
     taxLabel: "Est. TX tax (8.25%)",
+    // Google sign-in + saved carts/orders use Firebase (Auth + Firestore).
+    // Paste your web app config from Firebase console > Project settings. Leave apiKey empty to hide accounts.
+    // See SETUP-ACCOUNTS.md.
+    firebase: {
+        apiKey: "",
+        authDomain: "",
+        projectId: "",
+        appId: ""
+    },
     products: [
         {
             id: "NFC-KEY-01",

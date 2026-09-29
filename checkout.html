@@ -74,12 +74,31 @@
     function row(a, b) { return '<div class="flex justify-between"><span>' + a + '</span><span>' + b + '</span></div>'; }
     document.addEventListener('tagd:cart', draw);
     draw();
+    // Prefill from Google account + last used shipping details when signed in.
+    document.addEventListener('tagd:auth', function (e) {
+        var u = e.detail, A = window.TAGD_ACCOUNT, form = document.getElementById('co-form');
+        if (!u) return;
+        A.getProfile().then(function (p) {
+            var v = Object.assign({ Name: u.displayName, Email: u.email }, p.shipping || {});
+            Object.keys(v).forEach(function (k) { var el = form.elements[k]; if (el && !el.value && v[k]) el.value = v[k]; });
+        }).catch(function () {});
+    });
     document.getElementById('co-form').addEventListener('submit', function (e) {
         e.preventDefault();
         var t = C.totals(), f = new FormData(this), body = ['NEW ORDER REQUEST', ''];
         C.lines().forEach(function (l) { body.push(l.qty + ' x ' + l.product.name + ' (' + l.product.id + ') @ ' + C.money(l.product.price) + ' = ' + C.money(l.product.price * l.qty)); });
         body.push('', 'Subtotal: ' + C.money(t.subtotal), 'Shipping: ' + (t.free ? 'FREE' : C.money(t.shipping)), S.taxLabel + ': ' + C.money(t.tax), 'TOTAL: ' + C.money(t.total), '');
         f.forEach(function (v, k) { if (String(v).trim()) body.push(k + ': ' + v); });
+        var A = window.TAGD_ACCOUNT, u = A && A.user();
+        if (u) {
+            var ship = {}; f.forEach(function (v, k) { ship[k] = String(v); });
+            A.saveOrder({
+                items: C.lines().map(function (l) { return { id: l.product.id, name: l.product.name, price: l.product.price, qty: l.qty }; }),
+                totals: { subtotal: t.subtotal, shipping: t.shipping, tax: t.tax, total: t.total },
+                shipping: ship
+            }).catch(function (err) { console.warn('Order history not saved', err); });
+            A.saveProfile({ name: u.displayName || '', email: u.email || '', shipping: ship });
+        }
         location.href = 'mailto:' + S.email + '?subject=' + encodeURIComponent('Order Request - ' + f.get('Name')) + '&body=' + encodeURIComponent(body.join('\n'));
         submitted = true;
         C.clear();

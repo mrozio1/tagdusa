@@ -24,6 +24,7 @@
             return raw.filter(function (l) { return byId(l.id) && l.qty > 0; });
         } catch (e) { return []; }
     }
+    var accountsOn = !!(STORE.firebase && STORE.firebase.apiKey);
     var lines = load();
     function save() {
         try { localStorage.setItem(KEY, JSON.stringify(lines)); } catch (e) {}
@@ -42,6 +43,12 @@
             save();
         },
         clear: function () { lines = []; save(); },
+        // Replace contents wholesale (used by account sync / saved carts). Unknown ids are dropped.
+        replace: function (next) {
+            lines = (next || []).filter(function (l) { return byId(l.id) && l.qty > 0; }).map(function (l) { return { id: l.id, qty: l.qty }; });
+            save();
+        },
+        raw: function () { return lines.map(function (l) { return { id: l.id, qty: l.qty }; }); },
         lines: function () { return lines.map(function (l) { return { product: byId(l.id), qty: l.qty }; }); },
         count: function () { return lines.reduce(function (n, l) { return n + l.qty; }, 0); },
         totals: function () {
@@ -68,11 +75,13 @@
         var mobile = NAV.map(function (n) {
             return '<a class="block px-6 py-4 border-b-2 border-black ' + (n[0] === page ? 'bg-primary' : 'hover:bg-zinc-100') + '" href="' + n[2] + '">' + n[1] + '</a>';
         }).join('');
+        if (accountsOn) mobile += '<a class="block px-6 py-4 border-b-2 border-black ' + (page === 'account' ? 'bg-primary' : 'hover:bg-zinc-100') + '" href="account.html">ACCOUNT</a>';
         return '<header class="bg-white border-b-4 border-black sticky top-0 z-[100] brutalist-shadow-sm">' +
             '<div class="px-6 py-4 flex justify-between items-center">' +
             '<a href="index.html" aria-label="TAGD USA home"><img alt="TAGD USA Logo" class="h-12 w-auto brightness-0" src="assets/logo.PNG"/></a>' +
             '<nav class="hidden md:flex gap-4 font-headline font-black uppercase tracking-tight text-sm" aria-label="Primary">' + links + '</nav>' +
             '<div class="flex items-center gap-3">' +
+            (accountsOn ? '<a id="tagd-account-btn" href="account.html" class="w-12 h-12 border-2 border-black bg-white hover:bg-primary transition-colors flex items-center justify-center overflow-hidden" aria-label="Account"><span class="material-symbols-outlined text-2xl font-bold">person</span></a>' : '') +
             '<button id="tagd-cart-btn" type="button" class="relative w-12 h-12 border-2 border-black bg-white hover:bg-primary transition-colors flex items-center justify-center" aria-label="Open cart">' +
             '<span class="material-symbols-outlined text-2xl font-bold">shopping_cart</span>' +
             '<span id="tagd-cart-count" class="hidden absolute -top-3 -right-3 min-w-[1.5rem] text-center bg-tertiary text-white font-mono text-xs font-bold px-1 py-0.5 border-2 border-black">0</span></button>' +
@@ -96,7 +105,7 @@
             '<div class="space-y-4"><h4 class="font-headline font-bold uppercase tracking-widest text-primary text-sm">SHOP</h4>' +
             '<nav class="flex flex-col gap-3 font-mono text-xs tracking-[0.2em] uppercase opacity-70" aria-label="Footer">' +
             '<a ' + a + ' href="index.html">Home</a><a ' + a + ' href="products.html">Products</a><a ' + a + ' href="about.html">About</a>' +
-            '<a ' + a + ' href="quote.html">Custom Quote</a><a ' + a + ' href="checkout.html">Cart / Checkout</a></nav></div>' +
+            '<a ' + a + ' href="quote.html">Custom Quote</a><a ' + a + ' href="checkout.html">Cart / Checkout</a>' + (accountsOn ? '<a ' + a + ' href="account.html">My Account</a>' : '') + '</nav></div>' +
             '<div class="space-y-4"><h4 class="font-headline font-bold uppercase tracking-widest text-primary text-sm">LEGAL</h4>' +
             '<nav class="flex flex-col gap-3 font-mono text-xs tracking-[0.2em] uppercase opacity-70" aria-label="Legal">' +
             '<a ' + a + ' href="policies.html#shipping">Shipping &amp; Returns</a><a ' + a + ' href="policies.html#terms">Terms</a>' +
@@ -122,6 +131,8 @@
             '<div class="flex justify-between font-mono text-xs uppercase"><span>Shipping</span><span id="tagd-shipping"></span></div>' +
             '<div class="flex justify-between font-mono text-xs uppercase"><span>' + STORE.taxLabel + '</span><span id="tagd-tax"></span></div>' +
             '<div class="flex justify-between font-headline font-black text-xl uppercase mt-4 pt-4 border-t-2 border-dashed border-zinc-300"><span>Total</span><span id="tagd-total"></span></div>' +
+            (accountsOn ? '<p id="tagd-acct-note" class="font-mono text-[10px] uppercase tracking-widest text-secondary mt-4"></p>' +
+                '<button id="tagd-save-cart" type="button" class="hidden w-full border-2 border-black p-2 mt-3 font-mono text-xs uppercase tracking-widest hover:bg-black hover:text-white transition-colors">Save this cart for later</button>' : '') +
             '<a id="tagd-checkout" href="checkout.html" class="block text-center w-full bg-primary border-4 border-black p-4 mt-6 font-headline font-black uppercase tracking-widest hover:bg-black hover:text-white transition-all">CHECKOUT</a>' +
             '<a href="products.html" class="block text-center font-mono text-xs uppercase tracking-widest underline mt-3" data-close>Continue shopping</a>' +
             '</div></aside></div>';
@@ -218,6 +229,11 @@
         document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setDrawer(false); });
         window.addEventListener('storage', function (e) { if (e.key === KEY) { lines = load(); render(); } });
         render();
+        if (accountsOn) {
+            var sc = document.createElement('script');
+            sc.src = 'assets/auth.js';
+            document.head.appendChild(sc);
+        }
     }
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mount); else mount();
 })();
