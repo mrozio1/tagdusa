@@ -1,0 +1,16 @@
+/* Shared, plain-CSS helpers (no Tailwind @apply) used by the injected header/footer/cart
+   and by pages that don't define their own copy. */
+.material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+.brutalist-border { border: 4px solid #000; }
+.brutalist-shadow { box-shadow: 12px 12px 0 0 #000; }
+.brutalist-shadow-sm { box-shadow: 6px 6px 0 0 #000; }
+.headline-refined { font-family: 'Space Grotesk', sans-serif; font-weight: 900; text-transform: uppercase; line-height: .85; letter-spacing: -0.05em; }
+.body-refined { font-family: 'Inter', sans-serif; font-weight: 400; letter-spacing: .025em; line-height: 1.625; }
+html { scroll-behavior: smooth; }
+body { overflow-x: hidden; }
+#tagd-cart-drawer[data-open="false"] { pointer-events: none; }
+#tagd-cart-drawer[data-open="false"] .tagd-scrim { opacity: 0; }
+#tagd-cart-drawer[data-open="false"] .tagd-panel { transform: translateX(100%); }
+.tagd-scrim { transition: opacity .2s; }
+.tagd-panel { transition: transform .25s ease; }
+@media (prefers-reduced-motion: reduce) { .tagd-scrim, .tagd-panel { transition: none; } html { scroll-behavior: auto; } }

@@ -2,33 +2,15 @@
 <html class="light" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>About | TAGD USA</title>
+<meta name="description" content="The story behind TAGD USA: universal NFC tools, designed and built in Texas."/>
+<link rel="icon" href="assets/logo.PNG"/>
+<link rel="stylesheet" href="assets/site.css"/>
+
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700;900&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#00BFFF",
-                        "primary-container": "#00BFFF",
-                        "on-primary-container": "#002d63",
-                        "surface": "#f9f9f9",
-                        "on-surface": "#1a1c1c",
-                        "tertiary": "#ba1a20",
-                    },
-                    borderRadius: {
-                        "DEFAULT": "0px",
-                    },
-                    fontFamily: {
-                        "headline": ["Space Grotesk", "sans-serif"],
-                        "body": ["Inter", "sans-serif"],
-                    }
-                },
-            },
-        }
-    </script>
+<script src="assets/tailwind-config.js"></script>
 <style type="text/tailwindcss">
         @layer base {
             body {
@@ -77,20 +59,7 @@
     </style>
 </head>
 <body class="bg-surface">
-<header class="bg-white border-b-4 border-black sticky top-0 z-[100] px-6 py-4 flex justify-between items-center brutalist-shadow-sm">
-<div class="flex items-center gap-6">
-<img alt="TAGD USA Logo" class="h-12 w-auto brightness-0" src="/assets/logo.PNG"/>
-</div>
-<nav class="hidden md:flex gap-4 font-headline font-black uppercase tracking-tight text-sm">
-<a class="px-4 py-2 hover:bg-zinc-100 transition-colors" href="index.html">HOME</a>
-<a class="px-4 py-2 hover:bg-zinc-100 transition-colors" href="products.html">PRODUCTS</a>
-<a class="bg-primary px-4 py-2 hover:translate-y-[-2px] transition-transform border-2 border-black" href="about.html">ABOUT</a>
-<a class="px-4 py-2 hover:bg-zinc-100 transition-colors" href="quote.html">QUOTE</a>
-</nav>
-<div class="flex items-center">
-<button class="material-symbols-outlined text-3xl font-bold">menu</button>
-</div>
-</header>
+<div id="site-header"></div>
 <main class="relative overflow-hidden slanted-bg min-h-screen">
 <!-- Hero Section: The Creator's Manifesto -->
 <section class="relative pt-24 pb-12 px-6 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
@@ -236,15 +205,13 @@ Designed and built with a Texas maker mindset, tag’d represents a practical st
 </div>
 </div>
 <div class="mt-12 flex flex-col md:flex-row gap-6 items-center">
-<button class="w-full md:w-auto px-12 py-4 bg-black text-white font-black text-xl uppercase hover:translate-x-1 hover:-translate-y-1 transition-transform border-2 border-black hard-shadow-blue">
-                            JOIN THE TAGD EMPIRE →
-                        </button>
+<a class="inline-block text-center w-full md:w-auto px-12 py-4 bg-black text-white font-black text-xl uppercase hover:translate-x-1 hover:-translate-y-1 transition-transform border-2 border-black hard-shadow-blue" href="products.html">SHOP TAGD →</a>
 <span class="font-mono text-[10px] uppercase tracking-widest text-black/60">VERIFIED AUTHENTIC // TAGD USA // 2026</span>
 </div>
 </div>
 </div>
 </section>
-</main>
+
 <!-- Footer -->
 <section class="bg-primary py-16 overflow-hidden border-b-8 border-black">
 <div class="flex whitespace-nowrap gap-12 items-center animate-marquee">
@@ -253,47 +220,7 @@ Designed and built with a Texas maker mindset, tag’d represents a practical st
 </div>
 </section>
 </main>
-<footer class="bg-zinc-900 text-white py-20 px-6 md:px-12 border-t-4 border-black">
-<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-16">
-<div class="space-y-6">
-<div class="flex items-center gap-4">
-<span class="text-tertiary text-3xl">★</span>
-<span class="font-headline font-black text-2xl tracking-widest uppercase">TAGD USA</span>
-</div>
-<p class="body-refined opacity-60 text-sm max-w-xs uppercase tracking-widest">
-                Hardware for the digital era. Built to last, engineered to connect.
-            </p>
-<p class="font-mono text-xs opacity-40 uppercase tracking-widest mt-10">©2026 TAGD USA // OHULLO</p>
-</div>
-<div class="grid grid-cols-2 gap-20">
-<div class="space-y-4">
-<h4 class="font-headline font-bold uppercase tracking-widest text-primary text-sm">NAVIGATE</h4>
-<nav class="flex flex-col gap-3 font-mono text-xs tracking-[0.2em] uppercase opacity-70">
-<a class="hover:text-primary hover:opacity-100 transition-all" href="index.html">Home</a>
-<a class="hover:text-primary hover:opacity-100 transition-all" href="products.html">Products</a>
-<a class="hover:text-primary hover:opacity-100 transition-all" href="quote.html">Quote</a>
-</nav>
-</div>
-<div class="space-y-4">
-<h4 class="font-headline font-bold uppercase tracking-widest text-primary text-sm">LEGAL</h4>
-<nav class="flex flex-col gap-3 font-mono text-xs tracking-[0.2em] uppercase opacity-70">
-<a class="hover:text-primary hover:opacity-100 transition-all" href="#">Terms</a>
-<a class="hover:text-primary hover:opacity-100 transition-all" href="#">Privacy</a>
-<a class="hover:text-primary hover:opacity-100 transition-all" href="#">Origin</a>
-</nav>
-</div>
-</div>
-<div class="flex gap-4">
-<div class="w-14 h-14 brutalist-border border-white flex items-center justify-center hover:bg-primary hover:text-black transition-all cursor-pointer">
-<span class="material-symbols-outlined">share</span>
-</div>
-<div class="w-14 h-14 brutalist-border border-white flex items-center justify-center hover:bg-primary hover:text-black transition-all cursor-pointer">
-<span class="material-symbols-outlined">mail</span>
-</div>
-</div>
-</div>
-</footer>
-<button class="fixed bottom-8 right-8 z-[90] bg-tertiary text-black w-20 h-20 brutalist-border brutalist-shadow flex items-center justify-center hover:translate-x-1 hover:translate-y-1 hover:shadow-sm transition-all">
-<span class="material-symbols-outlined text-4xl font-bold">shopping_cart</span>
-</button>
+<div id="site-footer"></div>
+<script src="assets/store-config.js"></script>
+<script src="assets/site.js"></script>
 </body></html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My Account | TAGD USA</title>
+<meta name="description" content="Your TAGD USA account: saved carts and order history."/>
+<link rel="icon" href="assets/logo.PNG"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700;900&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="assets/tailwind-config.js"></script>
+<link rel="stylesheet" href="assets/site.css"/>
+</head>
+<body class="bg-surface text-on-surface font-body">
+<div id="site-header"></div>
+<main class="max-w-5xl mx-auto px-6 md:px-12 py-16">
+<h1 class="headline-refined text-6xl md:text-8xl mb-12">MY <span class="text-primary">ACCOUNT</span></h1>
+<div id="acct-off" class="hidden border-4 border-black bg-white p-10 font-mono text-sm uppercase tracking-wider">Accounts are not enabled on this site yet.</div>
+<div id="acct-loading" class="font-mono text-sm uppercase tracking-widest">Loading&hellip;</div>
+<div id="acct-out" class="hidden border-4 border-black bg-white brutalist-shadow-sm p-10 max-w-xl">
+<h2 class="headline-refined text-3xl mb-4">SIGN IN</h2>
+<p class="text-on-surface-variant mb-6">Sign in with Google to keep your cart across devices, save carts for later and see your order history.</p>
+<button id="acct-signin" type="button" class="w-full flex items-center justify-center gap-3 bg-black text-white border-4 border-black p-4 font-headline font-black uppercase tracking-widest hover:bg-primary hover:text-black transition-colors">
+<svg width="20" height="20" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 8 3l5.7-5.7C34 6.1 29.3 4 24 4 13 4 4 13 4 24s9 20 20 20 20-9 20-20c0-1.3-.1-2.6-.4-3.9z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 8 3l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.6-.4-3.9z"/></svg>
+CONTINUE WITH GOOGLE</button>
+</div>
+<div id="acct-in" class="hidden space-y-12">
+<section class="border-4 border-black bg-white p-6 flex items-center gap-6 justify-between flex-wrap">
+<div class="flex items-center gap-4"><img id="acct-photo" alt="" class="w-16 h-16 border-2 border-black object-cover hidden" referrerpolicy="no-referrer" src="assets/logo.PNG"/>
+<div><div id="acct-name" class="font-headline font-black text-2xl uppercase"></div><div id="acct-email" class="font-mono text-xs text-secondary"></div></div></div>
+<button id="acct-signout" type="button" class="border-2 border-black px-6 py-3 font-headline font-black uppercase tracking-widest hover:bg-black hover:text-white transition-colors">SIGN OUT</button>
+</section>
+<section><h2 class="headline-refined text-4xl mb-6">SAVED CARTS</h2><div id="acct-carts" class="space-y-4"></div></section>
+<section><h2 class="headline-refined text-4xl mb-6">ORDER HISTORY</h2>
+<p class="font-mono text-[10px] uppercase tracking-widest text-secondary mb-4">Orders are requests until we confirm and send a payment link by email.</p>
+<div id="acct-orders" class="space-y-4"></div></section>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="assets/store-config.js"></script>
+<script src="assets/site.js"></script>
+<script>
+    var C = window.TAGD_CART, S = window.TAGD_STORE, $ = function (id) { return document.getElementById(id); };
+    function show(which) { ['acct-off', 'acct-loading', 'acct-out', 'acct-in'].forEach(function (i) { $(i).classList.toggle('hidden', i !== which); }); }
+    var money = C.money, byId = function (id) { return S.products.filter(function (p) { return p.id === id; })[0]; };
+    function fmtDate(t) { return t && t.toDate ? t.toDate().toLocaleDateString() : 'Just now'; }
+    function itemsLine(lines, A) { return lines.map(function (l) { var p = byId(l.id); return l.qty + ' × ' + A.esc(l.name || (p && p.name) || l.id); }).join(', '); }
+
+    if (!S.firebase || !S.firebase.apiKey) show('acct-off');
+    else {
+        var wait = setInterval(function () { if (window.TAGD_ACCOUNT) { clearInterval(wait); init(window.TAGD_ACCOUNT); } }, 50);
+    }
+    function init(A) {
+        $('acct-signin').onclick = A.signIn;
+        $('acct-signout').onclick = A.signOut;
+        A.onChange(function (u) {
+            if (!u) return show('acct-out');
+            show('acct-in');
+            $('acct-name').textContent = u.displayName || 'Account';
+            $('acct-email').textContent = u.email || '';
+            var ph = $('acct-photo'); if (u.photoURL) { ph.src = u.photoURL; ph.classList.remove('hidden'); }
+            loadCarts(A); loadOrders(A);
+        });
+    }
+    function loadCarts(A) {
+        A.listSavedCarts().then(function (carts) {
+            $('acct-carts').innerHTML = carts.length ? carts.map(function (c) {
+                var ok = c.lines.filter(function (l) { return byId(l.id); });
+                return '<div class="border-4 border-black bg-white p-5 flex flex-wrap gap-4 justify-between items-center"><div><div class="font-headline font-black uppercase">' + A.esc(c.name) + '</div>' +
+                    '<div class="font-mono text-xs text-secondary">' + fmtDate(c.createdAt) + ' &middot; ' + itemsLine(ok, A) + '</div></div>' +
+                    '<div class="flex gap-2"><button data-load="' + c.id + '" class="bg-primary border-2 border-black px-4 py-2 font-mono text-xs uppercase font-bold">Load into cart</button>' +
+                    '<button data-del="' + c.id + '" class="border-2 border-black px-4 py-2 font-mono text-xs uppercase hover:bg-black hover:text-white">Delete</button></div></div>';
+            }).join('') : '<p class="font-mono text-xs uppercase tracking-widest text-secondary">No saved carts yet. Use &ldquo;Save this cart for later&rdquo; in your cart.</p>';
+            $('acct-carts').onclick = function (e) {
+                var b = e.target.closest('button'); if (!b) return;
+                if (b.dataset.load) { C.replace(carts.filter(function (c) { return c.id === b.dataset.load; })[0].lines); C.open(); }
+                if (b.dataset.del && confirm('Delete this saved cart?')) A.deleteSavedCart(b.dataset.del).then(function () { loadCarts(A); });
+            };
+        }).catch(function (e) { $('acct-carts').textContent = 'Could not load saved carts: ' + e.message; });
+    }
+    function loadOrders(A) {
+        A.listOrders().then(function (orders) {
+            $('acct-orders').innerHTML = orders.length ? orders.map(function (o, i) {
+                return '<div class="border-4 border-black bg-white p-5"><div class="flex flex-wrap justify-between gap-2 mb-2"><span class="font-mono text-xs">' + fmtDate(o.createdAt) + ' &middot; ' + A.esc(o.id.slice(0, 8).toUpperCase()) + '</span>' +
+                    '<span class="bg-black text-white font-mono text-[10px] px-2 py-1 uppercase">' + A.esc(o.status) + '</span></div>' +
+                    '<div class="text-sm mb-2">' + itemsLine(o.items || [], A) + '</div>' +
+                    '<div class="flex flex-wrap justify-between items-center gap-2"><span class="font-headline font-black text-lg">' + money((o.totals && o.totals.total) || 0) + '</span>' +
+                    '<button data-again="' + i + '" class="border-2 border-black px-4 py-2 font-mono text-xs uppercase hover:bg-black hover:text-white">Buy again</button></div></div>';
+            }).join('') : '<p class="font-mono text-xs uppercase tracking-widest text-secondary">No orders yet.</p>';
+            $('acct-orders').onclick = function (e) {
+                var b = e.target.closest('button[data-again]'); if (!b) return;
+                (orders[b.dataset.again].items || []).forEach(function (l) { C.add(l.id, l.qty); });
+                C.open();
+            };
+        }).catch(function (e) { $('acct-orders').textContent = 'Could not load orders: ' + e.message; });
+    }
+</script>
+</body></html>
